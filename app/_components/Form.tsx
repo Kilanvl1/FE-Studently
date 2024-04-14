@@ -27,7 +27,7 @@ export default function Form() {
     setUserInfo(newUserInfo);
   };
   return (
-    <form className="bg-gray-900 flex flex-col h-screen p-4">
+    <form className="bg-gray-900 flex flex-col h-screen p-4 items-start lg:items-center">
       <setUserInfoContext.Provider value={setUserInfo}>
         <RootNode />
       </setUserInfoContext.Provider>
@@ -54,7 +54,7 @@ const DecisionNode = ({
   console.log(shouldRenderFirstChild);
   const setUserInfo = useContext(setUserInfoContext);
   return (
-    <div>
+    <>
       <div className="flex gap-x-4 my-4 justify-center max-w-[32rem] items-center">
         <label htmlFor={selectId}>{label}</label>
         {/* <select
@@ -76,7 +76,7 @@ const DecisionNode = ({
             setValue(e);
           }}
         >
-          <SelectTrigger className="w-auto">
+          <SelectTrigger className="w-auto px-4">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
           <SelectContent className="bg-slate-900">
@@ -86,7 +86,7 @@ const DecisionNode = ({
         </Select>
       </div>
       {value && (shouldRenderFirstChild ? children[0] : children[1])}
-    </div>
+    </>
   );
 };
 
