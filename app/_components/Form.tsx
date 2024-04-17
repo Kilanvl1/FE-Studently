@@ -1,5 +1,5 @@
 "use client";
-import { useState, useContext, createContext } from "react";
+import { useState } from "react";
 import {
   Select,
   SelectContent,
@@ -8,29 +8,12 @@ import {
   SelectValue,
 } from "./ShadSelect";
 
-const setUserInfoContext = createContext(null);
-
 export default function Form() {
-  const [userInfo, setUserInfo] = useState([]);
-
-  const handleChange = (e, treeDepth) => {
-    const newUserInfo =
-      treeDepth >= userInfo.length
-        ? [...userInfo, e.target.value === "yes" ? true : false]
-        : userInfo.map((info, index) => {
-            if (index === treeDepth) {
-              return e.target.value === "yes" ? true : false;
-            } else {
-              return info;
-            }
-          });
-    setUserInfo(newUserInfo);
-  };
   return (
-    <form className="bg-gray-900 flex flex-col h-screen p-4 items-start lg:items-center">
-      <setUserInfoContext.Provider value={setUserInfo}>
+    <form className="p-4">
+      <div className="flex flex-col items-center">
         <RootNode />
-      </setUserInfoContext.Provider>
+      </div>
     </form>
   );
 }
@@ -40,22 +23,15 @@ type DecisionNodeProps = {
   label: string;
   children: React.ReactNode[];
   treeDepth: number;
-  setUserInfo?: (e, treeDepth) => void;
 };
 
-const DecisionNode = ({
-  selectId,
-  label,
-  children,
-  treeDepth,
-}: DecisionNodeProps) => {
+const DecisionNode = ({ selectId, label, children }: DecisionNodeProps) => {
   const [value, setValue] = useState("");
   const shouldRenderFirstChild = value === "yes";
-  console.log(shouldRenderFirstChild);
-  const setUserInfo = useContext(setUserInfoContext);
+
   return (
     <>
-      <div className="flex gap-x-4 my-4 justify-center max-w-[32rem] items-center">
+      <div className="flex gap-x-4 my-4 items-center max-w-[32rem]">
         <label htmlFor={selectId}>{label}</label>
         {/* <select
           id={selectId}
@@ -72,14 +48,13 @@ const DecisionNode = ({
         </select> */}
         <Select
           onValueChange={(e) => {
-            setUserInfo(e);
             setValue(e);
           }}
         >
-          <SelectTrigger className="w-auto px-4">
+          <SelectTrigger className="w-auto px-4 bg-myPink text-black">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
-          <SelectContent className="bg-slate-900">
+          <SelectContent className="bg-myPink text-black">
             <SelectItem value="yes">Yes</SelectItem>
             <SelectItem value="no">No</SelectItem>
           </SelectContent>
@@ -94,7 +69,7 @@ const NoLeadNode = <>No Lead</>;
 
 const ProvideWorkInfoNode = <>You only need to work 8 hours a week!</>;
 
-const MoneyNode = <>You are entitled to 1,000,000 dollars</>;
+const MoneyNodeInsurnance = <>You are entitled to an insurance grant</>;
 
 const InsuranceNode = () => {
   return (
@@ -103,10 +78,19 @@ const InsuranceNode = () => {
       label="Do you have insurance?"
       treeDepth={3}
     >
-      {[NoLeadNode, MoneyNode]}
+      {[NoLeadNode, MoneyNodeInsurnance]}
     </DecisionNode>
   );
 };
+
+const MoneyNodeGrant = (
+  <div>
+    <p className="border-myPink rounded-lg border p-2">
+      You are entitled to basic grant
+    </p>{" "}
+    <InsuranceNode />
+  </div>
+);
 
 const RequiredHoursNodeAbove21 = () => {
   return (
@@ -115,7 +99,7 @@ const RequiredHoursNodeAbove21 = () => {
       label="Do you work at least 32 hours a month?"
       treeDepth={3}
     >
-      {[MoneyNode, ProvideWorkInfoNode]}
+      {[MoneyNodeGrant, ProvideWorkInfoNode]}
     </DecisionNode>
   );
 };
@@ -127,7 +111,7 @@ const RequiredHoursNodeBellow21 = () => {
       label="Do you earn at least 155 Euros a month"
       treeDepth={3}
     >
-      {[MoneyNode, ProvideWorkInfoNode]}
+      {[MoneyNodeGrant, ProvideWorkInfoNode]}
     </DecisionNode>
   );
 };
