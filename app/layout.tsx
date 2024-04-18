@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "../utils/utils";
 import { Header } from "./_components/Header";
+import { Container } from "./_components/Container";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(inter.className, "bg-myYellow")}>
         <Header />
-        {children}
+        <Container>{children}</Container>
       </body>
     </html>
   );
