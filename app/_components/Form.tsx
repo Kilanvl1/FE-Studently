@@ -10,11 +10,12 @@ import {
 } from "@/components/ui/select";
 
 import { InputWithLabel } from "@/components/ui/InputWithLabel";
+import { cn } from "@/lib/utils";
 
 export default function Form() {
   const [age, setAge] = useState(null);
   return (
-    <form className="p-4">
+    <form className="p-4 mb-32">
       <div className="flex flex-col">
         <InputWithLabel
           placeholder="Enter your age..."
@@ -32,16 +33,29 @@ export default function Form() {
 type DecisionNodeProps = {
   selectId: string;
   label: string;
-  children: React.ReactNode[];
+  children?: React.ReactNode;
+  followUpQuestions?: React.ReactNode[];
+  className?: string;
 };
 
-const DecisionNode = ({ selectId, label, children }: DecisionNodeProps) => {
+const DecisionNode = ({
+  selectId,
+  label,
+  children,
+  className,
+  followUpQuestions,
+}: DecisionNodeProps) => {
   const [value, setValue] = useState("");
   const shouldRenderFirstChild = value === "yes";
 
   return (
     <>
-      <div className="flex gap-x-4 my-4 items-center max-w-[32rem]">
+      <div
+        className={cn(
+          `flex gap-x-4 my-4 items-center max-w-[32rem]`,
+          className
+        )}
+      >
         <label htmlFor={selectId}>{label}</label>
 
         <Select
@@ -58,7 +72,9 @@ const DecisionNode = ({ selectId, label, children }: DecisionNodeProps) => {
           </SelectContent>
         </Select>
       </div>
-      {value && (shouldRenderFirstChild ? children[0] : children[1])}
+      {children}
+      {value &&
+        (shouldRenderFirstChild ? followUpQuestions[0] : followUpQuestions[1])}
     </>
   );
 };
@@ -67,64 +83,40 @@ const NoLeadNode = <>No Lead</>;
 
 const Lead = <>Lead</>;
 
-const ProvideWorkInfoNode = <>You only need to work 8 hours a week!</>;
+const HasBothGrants = (
+  <ul className="list-disc px-6 p-4 flex flex-col gap-y-4 border-green-600 border">
+    <li>You are entitled to a basic grant worth 5,600 Euros / Y</li>
+    <li>You are entitled to an insurance grant worth 1,476 Euros per year</li>
+  </ul>
+);
 
-const MoneyNodeInsurnance = <>You are entitled to an insurance grant</>;
+const HasInsuranceGrant = (
+  <ul className="list-disc px-6 p-4 flex flex-col gap-y-4 border-green-600 border">
+    <li>You are entitled to a basic grant worth 5,600 Euros / Y</li>
+  </ul>
+);
 
 const InsuranceNode = () => {
   return (
-    <DecisionNode selectId="insurance" label="Do you have insurance?">
-      {[NoLeadNode, MoneyNodeInsurnance]}
-    </DecisionNode>
+    <DecisionNode
+      selectId="insurance"
+      label="Do you have insurance?"
+      followUpQuestions={[HasInsuranceGrant, HasBothGrants]}
+    />
   );
 };
 
-const MoneyNodeGrant = (
-  <div>
-    <p className="border-myPink rounded-lg border p-2">
-      You are entitled to basic grant
-    </p>
-    <InsuranceNode />
-  </div>
-);
-
-const RequiredHoursNodeAbove21 = () => {
+const RequirementsNode = () => {
   return (
     <DecisionNode
-      selectId="requiredHours"
-      label="Do you work at least 32 hours a month?"
+      selectId="requirements"
+      label="Do you meet one of the two following requirements?"
+      followUpQuestions={[<InsuranceNode key="0" />, NoLeadNode]}
     >
-      {[MoneyNodeGrant, ProvideWorkInfoNode]}
-    </DecisionNode>
-  );
-};
-
-const RequiredHoursNodeBellow21 = () => {
-  return (
-    <DecisionNode
-      selectId="requiredHours"
-      label="Do you earn at least 155 Euros a month"
-    >
-      {[MoneyNodeGrant, ProvideWorkInfoNode]}
-    </DecisionNode>
-  );
-};
-
-const WorkNode = () => {
-  return (
-    <DecisionNode selectId="work" label="Do you work?">
-      {[<AgeNode key={0} />, ProvideWorkInfoNode]}
-    </DecisionNode>
-  );
-};
-
-const AgeNode = () => {
-  return (
-    <DecisionNode selectId="age" label="Are you Above 21?">
-      {[
-        <RequiredHoursNodeAbove21 key="0" />,
-        <RequiredHoursNodeBellow21 key="1" />,
-      ]}
+      <ul className="list-disc px-6 p-4 flex flex-col gap-y-4 border-black border">
+        <li>Lived in the Netherlands for at least 5 years</li>
+        <li>You work at least 32 hours a week.</li>
+      </ul>
     </DecisionNode>
   );
 };
@@ -134,9 +126,8 @@ const EUPassportNode = () => {
     <DecisionNode
       selectId="eu-passport"
       label="Do you have an EU passport (excluding UK)?"
-    >
-      {[<WorkNode key="0" />, NoLeadNode]}
-    </DecisionNode>
+      followUpQuestions={[<RequirementsNode key="0" />, NoLeadNode]}
+    />
   );
 };
 
@@ -146,9 +137,8 @@ const DutchNationalityNode = () => {
       key="0"
       selectId="dutch-nationality"
       label="Are you from the Netherlands?"
-    >
-      {[Lead, <EUPassportNode key="1" />]}
-    </DecisionNode>
+      followUpQuestions={[Lead, <EUPassportNode key="1" />]}
+    />
   );
 };
 
@@ -158,8 +148,7 @@ const RootNode = () => {
       key="0"
       selectId="full-time-student"
       label="Are you a full time student?"
-    >
-      {[<DutchNationalityNode key="0" />, NoLeadNode]}
-    </DecisionNode>
+      followUpQuestions={[<DutchNationalityNode key="0" />, NoLeadNode]}
+    />
   );
 };
