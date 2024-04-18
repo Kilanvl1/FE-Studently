@@ -6,7 +6,7 @@ import { Container } from "./_components/Container";
 export default function Home() {
   return (
     <main>
-      <Container className="py-4 border-b border-myPink">
+      <Container className="py-4 border-b-black border-b">
         <LandingPage />
       </Container>
 

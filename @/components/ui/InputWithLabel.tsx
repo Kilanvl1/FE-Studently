@@ -1,0 +1,29 @@
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+import { InputProps } from "@/components/ui/input";
+type InputWithLabelProps = InputProps & {
+  label: string;
+};
+
+export function InputWithLabel({
+  label,
+  onChange,
+  type,
+  id,
+  placeholder,
+  value,
+}: InputWithLabelProps) {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <Label htmlFor={id}>{label}</Label>
+      <Input
+        type={type}
+        id={id}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={value}
+      />
+    </div>
+  );
+}

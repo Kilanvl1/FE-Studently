@@ -1,18 +1,29 @@
 "use client";
 import { useState } from "react";
+
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ShadSelect";
+} from "@/components/ui/select";
+
+import { InputWithLabel } from "@/components/ui/InputWithLabel";
 
 export default function Form() {
+  const [age, setAge] = useState(null);
   return (
     <form className="p-4">
-      <div className="flex flex-col items-center">
-        <RootNode />
+      <div className="flex flex-col">
+        <InputWithLabel
+          placeholder="Enter your age..."
+          label="Age"
+          type="number"
+          value={age}
+          onChange={(e) => setAge(parseInt(e.target.value))}
+        />
+        {age >= 18 && age <= 30 ? <RootNode /> : null}
       </div>
     </form>
   );
@@ -22,7 +33,6 @@ type DecisionNodeProps = {
   selectId: string;
   label: string;
   children: React.ReactNode[];
-  treeDepth: number;
 };
 
 const DecisionNode = ({ selectId, label, children }: DecisionNodeProps) => {
@@ -33,28 +43,16 @@ const DecisionNode = ({ selectId, label, children }: DecisionNodeProps) => {
     <>
       <div className="flex gap-x-4 my-4 items-center max-w-[32rem]">
         <label htmlFor={selectId}>{label}</label>
-        {/* <select
-          id={selectId}
-          name="test"
-          className="text-black rounded-md p-1 border-r-8 border-white"
-          onChange={(e) => {
-            setValue(e.target.value);
-            setUserInfo(e, treeDepth);
-          }}
-        >
-          <option value="">Select</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select> */}
+
         <Select
           onValueChange={(e) => {
             setValue(e);
           }}
         >
-          <SelectTrigger className="w-auto px-4 bg-myPink text-black">
+          <SelectTrigger className="w-auto px-4 bg-myOrange text-white">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
-          <SelectContent className="bg-myPink text-black">
+          <SelectContent className="bg-myOrange text-white">
             <SelectItem value="yes">Yes</SelectItem>
             <SelectItem value="no">No</SelectItem>
           </SelectContent>
@@ -67,17 +65,15 @@ const DecisionNode = ({ selectId, label, children }: DecisionNodeProps) => {
 
 const NoLeadNode = <>No Lead</>;
 
+const Lead = <>Lead</>;
+
 const ProvideWorkInfoNode = <>You only need to work 8 hours a week!</>;
 
 const MoneyNodeInsurnance = <>You are entitled to an insurance grant</>;
 
 const InsuranceNode = () => {
   return (
-    <DecisionNode
-      selectId="insurance"
-      label="Do you have insurance?"
-      treeDepth={3}
-    >
+    <DecisionNode selectId="insurance" label="Do you have insurance?">
       {[NoLeadNode, MoneyNodeInsurnance]}
     </DecisionNode>
   );
@@ -87,7 +83,7 @@ const MoneyNodeGrant = (
   <div>
     <p className="border-myPink rounded-lg border p-2">
       You are entitled to basic grant
-    </p>{" "}
+    </p>
     <InsuranceNode />
   </div>
 );
@@ -97,7 +93,6 @@ const RequiredHoursNodeAbove21 = () => {
     <DecisionNode
       selectId="requiredHours"
       label="Do you work at least 32 hours a month?"
-      treeDepth={3}
     >
       {[MoneyNodeGrant, ProvideWorkInfoNode]}
     </DecisionNode>
@@ -109,7 +104,6 @@ const RequiredHoursNodeBellow21 = () => {
     <DecisionNode
       selectId="requiredHours"
       label="Do you earn at least 155 Euros a month"
-      treeDepth={3}
     >
       {[MoneyNodeGrant, ProvideWorkInfoNode]}
     </DecisionNode>
@@ -118,7 +112,7 @@ const RequiredHoursNodeBellow21 = () => {
 
 const WorkNode = () => {
   return (
-    <DecisionNode selectId="work" label="Do you work?" treeDepth={2}>
+    <DecisionNode selectId="work" label="Do you work?">
       {[<AgeNode key={0} />, ProvideWorkInfoNode]}
     </DecisionNode>
   );
@@ -126,7 +120,7 @@ const WorkNode = () => {
 
 const AgeNode = () => {
   return (
-    <DecisionNode selectId="age" label="Are you Above 21?" treeDepth={1}>
+    <DecisionNode selectId="age" label="Are you Above 21?">
       {[
         <RequiredHoursNodeAbove21 key="0" />,
         <RequiredHoursNodeBellow21 key="1" />,
@@ -135,15 +129,37 @@ const AgeNode = () => {
   );
 };
 
+const EUPassportNode = () => {
+  return (
+    <DecisionNode
+      selectId="eu-passport"
+      label="Do you have an EU passport (excluding UK)?"
+    >
+      {[<WorkNode key="0" />, NoLeadNode]}
+    </DecisionNode>
+  );
+};
+
+const DutchNationalityNode = () => {
+  return (
+    <DecisionNode
+      key="0"
+      selectId="dutch-nationality"
+      label="Are you from the Netherlands?"
+    >
+      {[Lead, <EUPassportNode key="1" />]}
+    </DecisionNode>
+  );
+};
+
 const RootNode = () => {
   return (
     <DecisionNode
       key="0"
-      selectId="EU"
-      label="Do you have an EU passport?"
-      treeDepth={0}
+      selectId="full-time-student"
+      label="Are you a full time student?"
     >
-      {[<WorkNode key="0" />, NoLeadNode]}
+      {[<DutchNationalityNode key="0" />, NoLeadNode]}
     </DecisionNode>
   );
 };
