@@ -155,7 +155,7 @@ const DutchNationalityNode = () => {
       key="0"
       selectId="dutch-nationality"
       label="Are you from the Netherlands?"
-      followUpQuestions={[Lead, <EUPassportNode key="1" />]}
+      followUpQuestions={[HasBothGrants, <EUPassportNode key="1" />]}
     />
   );
 };
