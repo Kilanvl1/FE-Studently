@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, createContext, useContext } from "react";
 
 import {
   Select,
@@ -11,9 +11,13 @@ import {
 
 import { InputWithLabel } from "@/components/ui/InputWithLabel";
 import { cn } from "@/lib/utils";
+import { ProvideInfo } from "@/components/ui/ProvideInfo";
+
+const AgeContext = createContext(null);
 
 export default function Form() {
   const [age, setAge] = useState(null);
+
   return (
     <form className="p-4 mb-32">
       <div className="flex flex-col">
@@ -24,7 +28,16 @@ export default function Form() {
           value={age}
           onChange={(e) => setAge(parseInt(e.target.value))}
         />
-        {age >= 18 && age <= 30 ? <RootNode /> : null}
+
+        {age <= 30 ? (
+          <AgeContext.Provider value={age}>
+            <RootNode />
+          </AgeContext.Provider>
+        ) : (
+          <ProvideInfo className="my-4 border-red-600 px-8">
+            <li>Only students below the age of 30 are entitled to benefits</li>
+          </ProvideInfo>
+        )}
       </div>
     </form>
   );
@@ -84,39 +97,44 @@ const NoLeadNode = <>No Lead</>;
 const Lead = <>Lead</>;
 
 const HasBothGrants = (
-  <ul className="list-disc px-6 p-4 flex flex-col gap-y-4 border-green-600 border">
+  <ProvideInfo className="border-green-600 border">
     <li>You are entitled to a basic grant worth 5,600 Euros / Y</li>
     <li>You are entitled to an insurance grant worth 1,476 Euros per year</li>
-  </ul>
+  </ProvideInfo>
 );
 
 const HasInsuranceGrant = (
-  <ul className="list-disc px-6 p-4 flex flex-col gap-y-4 border-green-600 border">
+  <ProvideInfo className=" border-green-600 border">
     <li>You are entitled to a basic grant worth 5,600 Euros / Y</li>
-  </ul>
+  </ProvideInfo>
 );
 
 const InsuranceNode = () => {
   return (
     <DecisionNode
       selectId="insurance"
-      label="Do you have insurance?"
+      label="Do you have health insurance?"
       followUpQuestions={[HasInsuranceGrant, HasBothGrants]}
     />
   );
 };
 
 const RequirementsNode = () => {
+  const age = useContext(AgeContext);
   return (
     <DecisionNode
       selectId="requirements"
       label="Do you meet one of the two following requirements?"
       followUpQuestions={[<InsuranceNode key="0" />, NoLeadNode]}
     >
-      <ul className="list-disc px-6 p-4 flex flex-col gap-y-4 border-black border">
+      <ProvideInfo className=" border-black border">
         <li>Lived in the Netherlands for at least 5 years</li>
-        <li>You work at least 32 hours a week.</li>
-      </ul>
+        {age >= 21 ? (
+          <li>You work at least 32 hours a month.</li>
+        ) : (
+          <li>You earn at least 155 Euros a month.</li>
+        )}
+      </ProvideInfo>
     </DecisionNode>
   );
 };
