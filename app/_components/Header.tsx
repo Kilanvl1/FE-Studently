@@ -1,9 +1,11 @@
 import { Globe } from "lucide-react";
 export const Header = () => {
   return (
-    <div className="flex p-4 items-center gap-x-1 text-purple-900">
-      <Globe />
-      <h1 className="font-semibold text-lg">YAN.</h1>
-    </div>
+    <header className="flex p-4 items-center gap-x-1  mx-auto fixed bg-myYellow-base">
+      <nav className="max-w-[1440px] w-full">
+        <Globe className="text-myPurple-base" />
+        <h1 className="font-semibold text-lg">YAN.</h1>
+      </nav>
+    </header>
   );
 };

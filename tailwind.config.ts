@@ -19,10 +19,15 @@ const config = {
     },
     extend: {
       colors: {
-        myPink: "hsl(330, 100%, 50%)",
-        myPurple: "hsl(270, 100%, 50%)",
-        myYellow: "#FFF9B8",
-        myOrange: "#ef5b25",
+        myYellow: {
+          base: "#FFF9B8",
+          100: "#FFF393",
+          200: "#FFE99A",
+          300: "#FFDFAA",
+        },
+        myPurple: {
+          base: "#8b3dff",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

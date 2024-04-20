@@ -63,10 +63,10 @@ const DecisionNode = ({
             setValue(e);
           }}
         >
-          <SelectTrigger className="w-auto px-4 bg-myOrange text-white">
+          <SelectTrigger className="w-auto px-4 bg-myYellow-300  text-black">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
-          <SelectContent className="bg-myOrange text-white">
+          <SelectContent className="bg-myYellow-300 text-black">
             <SelectItem value="yes">Yes</SelectItem>
             <SelectItem value="no">No</SelectItem>
           </SelectContent>
