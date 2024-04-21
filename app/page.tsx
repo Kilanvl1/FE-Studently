@@ -12,7 +12,9 @@ export default function Home() {
         <LandingPage formRef={formRef} />
 
         <section ref={formRef}>
-          <h1 className="font-semibold text-4xl">Our questionnaire</h1>
+          <h1 className="font-semibold text-4xl text-center">
+            Our questionnaire
+          </h1>
           <Form />
         </section>
       </Container>

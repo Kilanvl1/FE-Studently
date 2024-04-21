@@ -29,6 +29,11 @@ const config = {
         myPurple: {
           base: "#8b3dff",
         },
+        myGreen: {
+          base: "#DCFFA3",
+          100: "#B9FFB9",
+          200: "#92FFD4",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

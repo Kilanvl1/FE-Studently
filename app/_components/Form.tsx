@@ -22,7 +22,7 @@ export default function Form() {
   const [age, setAge] = useState(null);
 
   return (
-    <form className="p-4 mb-32">
+    <form className="p-4 mb-32 max-w-lg mx-auto">
       <div className="flex flex-col">
         <InputWithLabel
           placeholder="Enter your age..."
@@ -68,7 +68,7 @@ const DecisionNode = ({
     <>
       <div
         className={cn(
-          `flex gap-x-4 my-4 items-center max-w-[32rem]`,
+          `flex gap-x-4 my-4 items-center max-w-[32rem] justify-between`,
           className
         )}
       >
