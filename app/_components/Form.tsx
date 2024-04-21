@@ -1,5 +1,7 @@
 "use client";
 import { useState, createContext, useContext } from "react";
+import whatsapp from "../../public/whatsapp.svg";
+import email from "../../public/mail.svg";
 
 import {
   Select,
@@ -12,6 +14,7 @@ import {
 import { InputWithLabel } from "@/components/ui/InputWithLabel";
 import { cn } from "@/lib/utils";
 import { ProvideInfo } from "@/components/ui/ProvideInfo";
+import { CallToAction } from "@/components/ui/CallToAction";
 
 const AgeContext = createContext(null);
 
@@ -94,19 +97,53 @@ const DecisionNode = ({
 
 const NoLeadNode = <>No Lead</>;
 
-const Lead = <>Lead</>;
-
 const HasBothGrants = (
-  <ProvideInfo className="border-green-600 border">
-    <li>You are entitled to a basic grant worth 5,600 Euros / Y</li>
-    <li>You are entitled to an insurance grant worth 1,476 Euros per year</li>
-  </ProvideInfo>
+  <>
+    <ProvideInfo className="border-green-600 border">
+      <li>You are entitled to a basic grant worth 5,600 Euros / Y</li>
+      <li>You are entitled to an insurance grant worth 1,476 Euros per year</li>
+    </ProvideInfo>
+    <div className="flex gap-x-4">
+      <CallToAction
+        href="https://api.whatsapp.com/send?phone=31648115430"
+        label="Whats App"
+        alt="Whatsapp"
+        src={whatsapp}
+        className="bg-[#22d266] flex-1"
+      />
+      <CallToAction
+        href="https://api.whatsapp.com/send?phone=31648115430"
+        label="Email"
+        alt="email"
+        src={email}
+        className="bg-myYellow-300 flex-1"
+      />
+    </div>
+  </>
 );
 
 const HasInsuranceGrant = (
-  <ProvideInfo className=" border-green-600 border">
-    <li>You are entitled to a basic grant worth 5,600 Euros / Y</li>
-  </ProvideInfo>
+  <>
+    <ProvideInfo className=" border-green-600 border">
+      <li>You are entitled to a basic grant worth 5,600 Euros / Y</li>
+    </ProvideInfo>
+    <div className="flex gap-x-4">
+      <CallToAction
+        href="https://api.whatsapp.com/send?phone=31648115430"
+        label="Whats App"
+        alt="Whatsapp"
+        src={whatsapp}
+        className="bg-[#22d266] flex-1"
+      />
+      <CallToAction
+        href="https://api.whatsapp.com/send?phone=31648115430"
+        label="Email"
+        alt="email"
+        src={email}
+        className="bg-myYellow-300 flex-1"
+      />
+    </div>
+  </>
 );
 
 const InsuranceNode = () => {
