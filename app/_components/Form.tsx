@@ -1,5 +1,5 @@
 "use client";
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 import whatsapp from "../../public/whatsapp.svg";
 import email from "../../public/mail.svg";
 
@@ -22,7 +22,7 @@ export default function Form() {
   const [age, setAge] = useState(null);
 
   return (
-    <form className="p-4 mb-32 max-w-lg mx-auto">
+    <form className=" mb-32 max-w-lg mx-auto">
       <div className="flex flex-col">
         <InputWithLabel
           placeholder="Enter your age..."
@@ -32,11 +32,13 @@ export default function Form() {
           onChange={(e) => setAge(parseInt(e.target.value))}
         />
 
-        {age <= 30 ? (
+        {age <= 30 && age && (
           <AgeContext.Provider value={age}>
             <RootNode />
           </AgeContext.Provider>
-        ) : (
+        )}
+
+        {age > 30 && (
           <ProvideInfo className="my-4 border-red-600 px-8">
             <li>Only students below the age of 30 are entitled to benefits</li>
           </ProvideInfo>
@@ -62,13 +64,19 @@ const DecisionNode = ({
   followUpQuestions,
 }: DecisionNodeProps) => {
   const [value, setValue] = useState("");
+  const [isMounted, setIsMounted] = useState(false);
+  console.log(isMounted);
   const shouldRenderFirstChild = value === "yes";
-
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   return (
     <>
       <div
         className={cn(
-          `flex gap-x-4 my-4 items-center max-w-[32rem] justify-between`,
+          `flex gap-x-4 my-4 items-center max-w-[32rem] justify-between opacity-0 transition duration-300 ${
+            isMounted ? "opacity-100" : ""
+          }`,
           className
         )}
       >
@@ -99,9 +107,12 @@ const NoLeadNode = <>No Lead</>;
 
 const HasBothGrants = (
   <>
-    <ProvideInfo className="border-green-600 border">
-      <li>You are entitled to a basic grant worth 5,600 Euros / Y</li>
-      <li>You are entitled to an insurance grant worth 1,476 Euros per year</li>
+    <ProvideInfo className="border-green-600 border mb-4">
+      <li>You are entitled to 7076 Euros per year.</li>
+      <li>
+        You are entitled to free public transport on either weekdays or
+        weekends.
+      </li>
     </ProvideInfo>
     <div className="flex gap-x-4">
       <CallToAction
@@ -124,8 +135,12 @@ const HasBothGrants = (
 
 const HasInsuranceGrant = (
   <>
-    <ProvideInfo className=" border-green-600 border">
-      <li>You are entitled to a basic grant worth 5,600 Euros / Y</li>
+    <ProvideInfo className=" border-green-600 border mb-4">
+      <li>You are entitled to 5600 Euros per year.</li>
+      <li>
+        You are entitled to free public transport on either weekdays or
+        weekends.
+      </li>
     </ProvideInfo>
     <div className="flex gap-x-4">
       <CallToAction
@@ -150,7 +165,7 @@ const InsuranceNode = () => {
   return (
     <DecisionNode
       selectId="insurance"
-      label="Do you have health insurance?"
+      label="Do you have a Dutch health insurance?"
       followUpQuestions={[HasInsuranceGrant, HasBothGrants]}
     />
   );

@@ -9,12 +9,12 @@ export const LandingPage = ({
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="flex-1">
-        <h3 className="font-bold text-5xl mb-8 ">
-          Your Guide to Government Benefits.
+        <h3 className="font-bold text-5xl mb-8">
+          24% of students miss out on government benefits.
         </h3>
         <p className="text-xl my-8">
           {
-            "Don't miss out on any free benefits. Use our questionnaire to find out what you're entitled to."
+            "Don't miss out on any free benefits. Use our questionnaire to unluck your benefits!"
           }
         </p>
         <Button

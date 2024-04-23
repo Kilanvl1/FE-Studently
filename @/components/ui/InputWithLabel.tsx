@@ -13,9 +13,10 @@ export function InputWithLabel({
   id,
   placeholder,
   value,
+  ...props
 }: InputWithLabelProps) {
   return (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
+    <div className="grid w-full max-w-sm items-center gap-1.5 my-5">
       <Label htmlFor={id}>{label}</Label>
       <Input
         type={type}
@@ -23,6 +24,7 @@ export function InputWithLabel({
         placeholder={placeholder}
         onChange={onChange}
         value={value}
+        {...props}
       />
     </div>
   );
