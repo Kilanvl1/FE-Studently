@@ -194,7 +194,7 @@ const InsuranceNode = () => {
       label="Do you have a Dutch health insurance?"
       followUpQuestions={[HasInsuranceGrant, HasBothGrants]}
       extraInfoItems={[
-        "Everybody with a job in the Netherlands is required to have a Dutch health insurance",
+        "Everyone who lives or works in the Netherlands, is required by law to have a health insurance.",
       ]}
     />
   );
