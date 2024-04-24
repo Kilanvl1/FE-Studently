@@ -2,6 +2,7 @@
 import { useState, createContext, useContext, useEffect } from "react";
 import whatsapp from "../../public/whatsapp.svg";
 import email from "../../public/mail.svg";
+import { Info } from "lucide-react";
 
 import {
   Select,
@@ -10,6 +11,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 import { InputWithLabel } from "@/components/ui/InputWithLabel";
 import { cn } from "@/lib/utils";
@@ -54,6 +61,7 @@ type DecisionNodeProps = {
   children?: React.ReactNode;
   followUpQuestions?: React.ReactNode[];
   className?: string;
+  extraInfoItems?: string[];
 };
 
 const DecisionNode = ({
@@ -62,10 +70,10 @@ const DecisionNode = ({
   children,
   className,
   followUpQuestions,
+  extraInfoItems,
 }: DecisionNodeProps) => {
   const [value, setValue] = useState("");
   const [isMounted, setIsMounted] = useState(false);
-  console.log(isMounted);
   const shouldRenderFirstChild = value === "yes";
   useEffect(() => {
     setIsMounted(true);
@@ -80,7 +88,25 @@ const DecisionNode = ({
           className
         )}
       >
-        <label htmlFor={selectId}>{label}</label>
+        <div className="flex items-center gap-x-4">
+          <label htmlFor={selectId}>{label}</label>
+          {extraInfoItems && (
+            <Popover>
+              <PopoverTrigger>
+                <Info size={18} />
+              </PopoverTrigger>
+              <PopoverContent>
+                <ul className="list-disc px-4">
+                  {extraInfoItems.map((info, index) => (
+                    <li key={index} className="mb-2">
+                      {info}
+                    </li>
+                  ))}
+                </ul>
+              </PopoverContent>
+            </Popover>
+          )}
+        </div>
 
         <Select
           onValueChange={(e) => {
@@ -107,14 +133,14 @@ const NoLeadNode = <>No Lead</>;
 
 const HasBothGrants = (
   <>
-    <ProvideInfo className="border-green-600 border mb-4">
-      <li>You are entitled to 7076 Euros per year.</li>
+    <ProvideInfo>
+      <li>You are entitled to 7076€ per year.</li>
       <li>
         You are entitled to free public transport on either weekdays or
         weekends.
       </li>
     </ProvideInfo>
-    <div className="flex gap-x-4">
+    <div className="flex gap-x-4 mt-6">
       <CallToAction
         href="https://api.whatsapp.com/send?phone=31648115430"
         label="Whats App"
@@ -135,8 +161,8 @@ const HasBothGrants = (
 
 const HasInsuranceGrant = (
   <>
-    <ProvideInfo className=" border-green-600 border mb-4">
-      <li>You are entitled to 5600 Euros per year.</li>
+    <ProvideInfo className="mb-4">
+      <li>You are entitled to 5600€ per year.</li>
       <li>
         You are entitled to free public transport on either weekdays or
         weekends.
@@ -167,6 +193,9 @@ const InsuranceNode = () => {
       selectId="insurance"
       label="Do you have a Dutch health insurance?"
       followUpQuestions={[HasInsuranceGrant, HasBothGrants]}
+      extraInfoItems={[
+        "Everybody with a job in the Netherlands is required to have a Dutch health insurance",
+      ]}
     />
   );
 };
@@ -179,7 +208,7 @@ const RequirementsNode = () => {
       label="Do you meet one of the two following requirements?"
       followUpQuestions={[<InsuranceNode key="0" />, NoLeadNode]}
     >
-      <ProvideInfo className=" border-black border">
+      <ProvideInfo>
         <li>Lived in the Netherlands for at least 5 years</li>
         {age >= 21 ? (
           <li>You work at least 32 hours a month.</li>
@@ -195,7 +224,7 @@ const EUPassportNode = () => {
   return (
     <DecisionNode
       selectId="eu-passport"
-      label="Do you have an EU passport (excluding UK)?"
+      label="Do you have an EU passport?"
       followUpQuestions={[<RequirementsNode key="0" />, NoLeadNode]}
     />
   );
@@ -208,6 +237,10 @@ const DutchNationalityNode = () => {
       selectId="dutch-nationality"
       label="Are you from the Netherlands?"
       followUpQuestions={[HasBothGrants, <EUPassportNode key="1" />]}
+      extraInfoItems={[
+        "You have a Dutch passport or,",
+        "You are a Dutch citizen",
+      ]}
     />
   );
 };
@@ -219,6 +252,10 @@ const RootNode = () => {
       selectId="full-time-student"
       label="Are you a full time student?"
       followUpQuestions={[<DutchNationalityNode key="0" />, NoLeadNode]}
+      extraInfoItems={[
+        "hbo or university: bachelor, master or associate degree",
+        "MBO: vocational training pathway",
+      ]}
     />
   );
 };

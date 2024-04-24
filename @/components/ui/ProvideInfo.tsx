@@ -9,7 +9,7 @@ export const ProvideInfo = ({ className, children }: ProvideInfoProps) => {
     <ul
       className={cn(
         className,
-        "flex flex-col gap-y-4 list-disc border p-4 px-6 rounded-md"
+        "flex flex-col gap-y-4 list-disc p-4 rounded-md"
       )}
     >
       {children}
