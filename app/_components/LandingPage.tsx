@@ -5,8 +5,10 @@ import isabella from "../../public/Isabella_review.svg";
 import Image from "next/image";
 export const LandingPage = ({
   formRef,
+  className,
 }: {
   formRef: React.RefObject<HTMLFormElement>;
+  className?: string;
 }) => {
   return (
     <div className="flex justify-center items-center h-screen">
@@ -20,7 +22,7 @@ export const LandingPage = ({
           }
         </p>
         <Button
-          className="bg-myPurple-base text-white"
+          className={`${className} text-white`}
           onClick={() => {
             formRef.current?.scrollIntoView({
               behavior: "smooth",
@@ -31,7 +33,7 @@ export const LandingPage = ({
         </Button>
       </div>
       <div className="hidden lg:block flex-1 relative">
-        <Image src={lucas} alt="Nerd" className="absolute left-72" />
+        {/* <Image src={lucas} alt="Nerd" className="absolute left-72" /> */}
         <Image src={graphic} alt="Nerd" className="rounded-full" />
         <Image
           src={isabella}

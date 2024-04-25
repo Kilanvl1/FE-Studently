@@ -5,7 +5,13 @@ import { LandingPage } from "./_components/LandingPage";
 import { Container } from "./_components/Container";
 import { InputWithLabel } from "@/components/ui/InputWithLabel";
 import { Button } from "@/components/ui/button";
-export default function Home() {
+export default function Home({
+  primaryColor,
+  secondaryColor,
+}: {
+  primaryColor: string;
+  secondaryColor?: string;
+}) {
   const formRef = useRef<HTMLFormElement | null>(null);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -15,7 +21,7 @@ export default function Home() {
   return (
     <main>
       <Container>
-        <LandingPage formRef={formRef} />
+        <LandingPage formRef={formRef} className={primaryColor} />
 
         <section ref={formRef} className="max-w-lg mx-auto mb-32">
           <h1 className="font-semibold text-4xl text-center mb-6">
@@ -29,7 +35,7 @@ export default function Home() {
                 to, we need information surronding your age, education type, and
                 nationality.
               </p>
-              <Form />
+              <Form className={secondaryColor} />
             </>
           ) : (
             <>
@@ -50,7 +56,9 @@ export default function Home() {
                   required={true}
                 />
                 <div className="flex justify-center">
-                  <Button type="submit">Unlock your benefits</Button>
+                  <Button type="submit" className={primaryColor}>
+                    Unlock your benefits
+                  </Button>
                 </div>
               </form>
             </>

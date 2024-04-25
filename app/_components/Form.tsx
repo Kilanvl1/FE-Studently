@@ -2,6 +2,7 @@
 import { useState, createContext, useContext, useEffect } from "react";
 import whatsapp from "../../public/whatsapp.svg";
 import email from "../../public/mail.svg";
+import calendar from "../../public/calendar-fold.svg";
 import { Info } from "lucide-react";
 
 import {
@@ -25,7 +26,7 @@ import { CallToAction } from "@/components/ui/CallToAction";
 
 const AgeContext = createContext(null);
 
-export default function Form() {
+export default function Form({ className }: { className?: string }) {
   const [age, setAge] = useState(null);
 
   return (
@@ -113,7 +114,7 @@ const DecisionNode = ({
             setValue(e);
           }}
         >
-          <SelectTrigger className="w-auto px-4 bg-myYellow-300  text-black">
+          <SelectTrigger className="w-auto px-4 bg-blue-secondary  text-black">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
           <SelectContent className="bg-myYellow-300 text-black">
@@ -149,11 +150,11 @@ const HasBothGrants = (
         className="bg-[#22d266] flex-1"
       />
       <CallToAction
-        href="https://api.whatsapp.com/send?phone=31648115430"
-        label="Email"
-        alt="email"
-        src={email}
-        className="bg-myYellow-300 flex-1"
+        href="https://calendly.com/lohefes"
+        label="Calendly"
+        alt="calendar"
+        src={calendar}
+        className="bg-[#0169fe] flex-1"
       />
     </div>
   </>
@@ -206,7 +207,14 @@ const RequirementsNode = () => {
     <DecisionNode
       selectId="requirements"
       label="Do you meet one of the two following requirements?"
-      followUpQuestions={[<InsuranceNode key="0" />, NoLeadNode]}
+      followUpQuestions={[
+        <InsuranceNode key="0" />,
+        <>
+          In order to qualify for the student benefits you need to meet one of
+          the above requirements. Don't meet the above requirements? don't
+          worry! Select yes and we will help you at a later stage.
+        </>,
+      ]}
     >
       <ProvideInfo>
         <li>Lived in the Netherlands for at least 5 years</li>
@@ -225,7 +233,12 @@ const EUPassportNode = () => {
     <DecisionNode
       selectId="eu-passport"
       label="Do you have an EU passport?"
-      followUpQuestions={[<RequirementsNode key="0" />, NoLeadNode]}
+      followUpQuestions={[
+        <RequirementsNode key="0" />,
+        <>
+          Unfortunately all student benefits are only for EU passport holders.
+        </>,
+      ]}
     />
   );
 };
@@ -251,7 +264,14 @@ const RootNode = () => {
       key="0"
       selectId="full-time-student"
       label="Are you a full time student?"
-      followUpQuestions={[<DutchNationalityNode key="0" />, NoLeadNode]}
+      followUpQuestions={[
+        <DutchNationalityNode key="0" />,
+        <>
+          You don’t qualify for the student benefits, as it's specifically
+          designed to support students pursuing full-time studies at Dutch
+          educational institutions.
+        </>,
+      ]}
       extraInfoItems={[
         "hbo or university: bachelor, master or associate degree",
         "MBO: vocational training pathway",

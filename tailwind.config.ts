@@ -34,6 +34,10 @@ const config = {
           100: "#B9FFB9",
           200: "#92FFD4",
         },
+        blue: {
+          primary: "#006afe",
+          secondary: "#4287ff",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
