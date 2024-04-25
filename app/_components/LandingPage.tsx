@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import graphic from "../../public/Nerd Girl.svg";
+import lucas from "../../public/Lucas_review.svg";
+import isabella from "../../public/Isabella_review.svg";
 import Image from "next/image";
 export const LandingPage = ({
   formRef,
@@ -28,8 +30,14 @@ export const LandingPage = ({
           Take questionnaire
         </Button>
       </div>
-      <div className="hidden lg:block flex-1">
+      <div className="hidden lg:block flex-1 relative">
+        <Image src={lucas} alt="Nerd" className="absolute left-72" />
         <Image src={graphic} alt="Nerd" className="rounded-full" />
+        <Image
+          src={isabella}
+          alt="Nerd"
+          className="absolute right-40 top-[20rem]"
+        />
       </div>
     </div>
   );
