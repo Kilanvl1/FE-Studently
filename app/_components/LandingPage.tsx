@@ -3,6 +3,7 @@ import graphic from "../../public/Nerd Girl.svg";
 import lucas from "../../public/Lucas_review.svg";
 import isabella from "../../public/Isabella_review.svg";
 import Image from "next/image";
+import girl from "../../public/30700162_4101.jpg";
 export const LandingPage = ({
   formRef,
   className,
@@ -34,7 +35,7 @@ export const LandingPage = ({
       </div>
       <div className="hidden lg:block flex-1 relative">
         {/* <Image src={lucas} alt="Nerd" className="absolute left-72" /> */}
-        <Image src={graphic} alt="Nerd" className="rounded-full" />
+        <Image src={girl} alt="Nerd" className="rounded-full" />
         <Image
           src={isabella}
           alt="Nerd"
