@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import { useState, createContext, useContext, useEffect } from "react";
 import whatsapp from "../../public/whatsapp.svg";
