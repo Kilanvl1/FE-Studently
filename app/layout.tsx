@@ -25,23 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "")}>
-        <div className="flex">
-          <div className="bg-myYellow-base">
-            <Header
-              headerColor="bg-myYellow-base"
-              logoColor="text-myPurple-base"
-            />
-            <Home primaryColor="bg-myPurple-base" />
-          </div>
-          <div className="bg-white">
-            <Header headerColor="bg-white" logoColor="text-blue-primary" />
-            <Home
-              primaryColor="bg-blue-primary"
-              secondaryColor="bg-blue-secondary"
-            />
-          </div>
-        </div>
+      <body className={cn(inter.className, "bg-[#AEC6CF]")}>
+        <Header headerColor="bg-[#AEC6CF]" logoColor="text-myYellow-base" />
+        <Home
+          primaryColor="bg-myYellow-base"
+          secondaryColor="bg-myYellow-base"
+        />
       </body>
     </html>
   );

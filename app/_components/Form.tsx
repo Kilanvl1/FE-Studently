@@ -118,7 +118,7 @@ const DecisionNode = ({
           <SelectTrigger className="w-auto px-4 bg-blue-secondary  text-black">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
-          <SelectContent className="bg-myYellow-300 text-black">
+          <SelectContent className="bg-blue-secondary text-black">
             <SelectItem value="yes">Yes</SelectItem>
             <SelectItem value="no">No</SelectItem>
           </SelectContent>
@@ -196,7 +196,7 @@ const InsuranceNode = () => {
       label="Do you have a Dutch health insurance?"
       followUpQuestions={[HasInsuranceGrant, HasBothGrants]}
       extraInfoItems={[
-        "Everyone who lives or works in the Netherlands, is required by law to have a health insurance.",
+        "Everyone who lives or works in the Netherlands, is required by law to have a Dutch health insurance.",
       ]}
     />
   );
@@ -274,7 +274,7 @@ const RootNode = () => {
         </>,
       ]}
       extraInfoItems={[
-        "hbo or university: bachelor, master or associate degree",
+        "HBO or university: bachelor, master or associate degree",
         "MBO: vocational training pathway",
       ]}
     />

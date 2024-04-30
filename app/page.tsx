@@ -5,6 +5,7 @@ import { LandingPage } from "./_components/LandingPage";
 import { Container } from "./_components/Container";
 import { InputWithLabel } from "@/components/ui/InputWithLabel";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 export default function Home({
   primaryColor,
   secondaryColor,
@@ -56,7 +57,10 @@ export default function Home({
                   required={true}
                 />
                 <div className="flex justify-center">
-                  <Button type="submit" className={primaryColor}>
+                  <Button
+                    type="submit"
+                    className={cn(primaryColor, "text-black")}
+                  >
                     Unlock your benefits
                   </Button>
                 </div>

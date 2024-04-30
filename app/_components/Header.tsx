@@ -7,10 +7,10 @@ export const Header = ({
   logoColor: string;
 }) => {
   return (
-    <header className={`p-4 fixed ${headerColor}`}>
+    <header className={`p-4 fixed w-full ${headerColor}`}>
       <nav className="flex max-w-screen-lg gap-x-1 mx-auto items-center">
         <Globe className={`${logoColor}`} />
-        <h1 className="font-semibold text-lg">Young Amsterdam Network.</h1>
+        <h1 className="font-semibold text-lg ">Young Amsterdam Network.</h1>
       </nav>
     </header>
   );
