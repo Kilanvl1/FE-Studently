@@ -13,7 +13,7 @@ export const LandingPage = ({
   className?: string;
 }) => {
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen gap-x-8">
       <div className="flex-1">
         <h3 className="font-bold text-4xl mb-8">
           64% of international students miss out on government benefits.

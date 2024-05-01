@@ -25,7 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "bg-[#AEC6CF]")}>
+      <body
+        className={cn(
+          inter.className,
+          "bg-gradient-to-r from-myBlue-gradient via-myBlue-base to-myBlue-gradient"
+        )}
+      >
         <Header headerColor="bg-[#AEC6CF]" logoColor="text-myYellow-base" />
         <Home
           primaryColor="bg-myYellow-base"

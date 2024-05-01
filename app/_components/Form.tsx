@@ -115,10 +115,10 @@ const DecisionNode = ({
             setValue(e);
           }}
         >
-          <SelectTrigger className="w-auto px-4 bg-blue-secondary  text-black">
+          <SelectTrigger className="w-auto px-4 bg-myBlue-test text-black">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
-          <SelectContent className="bg-blue-secondary text-black">
+          <SelectContent className="bg-blue-secondary bg-myBlue-test text-black">
             <SelectItem value="yes">Yes</SelectItem>
             <SelectItem value="no">No</SelectItem>
           </SelectContent>
@@ -130,8 +130,6 @@ const DecisionNode = ({
     </>
   );
 };
-
-const NoLeadNode = <>No Lead</>;
 
 const HasBothGrants = (
   <>
@@ -189,12 +187,22 @@ const HasInsuranceGrant = (
   </>
 );
 
+const WorkNode = () => {
+  return (
+    <DecisionNode
+      selectId="work"
+      label="Do you have a job in the Netherlands?"
+      followUpQuestions={[HasBothGrants, HasBothGrants]}
+    />
+  );
+};
+
 const InsuranceNode = () => {
   return (
     <DecisionNode
       selectId="insurance"
       label="Do you have a Dutch health insurance?"
-      followUpQuestions={[HasInsuranceGrant, HasBothGrants]}
+      followUpQuestions={[HasInsuranceGrant, <WorkNode key="0" />]}
       extraInfoItems={[
         "Everyone who lives or works in the Netherlands, is required by law to have a Dutch health insurance.",
       ]}

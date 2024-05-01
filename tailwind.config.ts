@@ -34,9 +34,13 @@ const config = {
           100: "#B9FFB9",
           200: "#92FFD4",
         },
-        blue: {
+        myBlue: {
+          base: "#AEC6CF",
+          gradient: "#91B2BE",
           primary: "#006afe",
           secondary: "#4287ff",
+          test: "#BEC1D3",
+          test2: "#CBBECE",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
