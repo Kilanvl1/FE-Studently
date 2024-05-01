@@ -8,7 +8,7 @@ export const Header = ({
 }) => {
   return (
     <header
-      className={`p-4 fixed w-full ${headerColor} bg-gradient-to-r from-myBlue-gradient via-myBlue-base to-myBlue-gradient`}
+      className={`p-4 fixed w-full ${headerColor} lg:bg-gradient-to-r from-myBlue-gradient via-myBlue-base to-myBlue-gradient`}
     >
       <nav className="flex max-w-screen-lg gap-x-1 mx-auto items-center">
         <Globe className={`${logoColor}`} />
