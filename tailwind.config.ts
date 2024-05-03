@@ -36,7 +36,7 @@ const config = {
         },
         myBlue: {
           base: "#AEC6CF",
-          gradient: "#5B8899",
+          gradient: "#749DAD",
           primary: "#006afe",
           secondary: "#4287ff",
           test: "#BEC1D3",
