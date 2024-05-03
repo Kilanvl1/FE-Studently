@@ -149,7 +149,7 @@ const HasBothGrants = (
         className="bg-[#22d266] flex-1"
       />
       <CallToAction
-        href="https://calendly.com/lohefes"
+        href="https://calendly.com/youngamsterdamnetwork/30min"
         label="Calendly"
         alt="calendar"
         src={calendar}
@@ -177,11 +177,11 @@ const HasInsuranceGrant = (
         className="bg-[#22d266] flex-1"
       />
       <CallToAction
-        href="https://api.whatsapp.com/send?phone=31648115430"
-        label="Email"
-        alt="email"
-        src={email}
-        className="bg-myYellow-300 flex-1"
+        href="https://calendly.com/youngamsterdamnetwork/30min"
+        label="Calendly"
+        alt="calendar"
+        src={calendar}
+        className="bg-[#0169fe] flex-1"
       />
     </div>
   </>
