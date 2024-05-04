@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import girl from "../../public/30700162_4101.jpg";
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 export const LandingPage = ({
   formRef,
@@ -61,13 +61,7 @@ export const LandingPage = ({
             ease: [0, 0.71, 0.2, 1.01],
           }}
         >
-          {/* <Image src={lucas} alt="Nerd" className="absolute left-72" /> */}
           <Image src={girl} alt="Nerd" className="rounded-full" />
-          {/* <Image
-          src={isabella}
-          alt="Nerd"
-          className="absolute right-40 top-[20rem]"
-        /> */}
         </motion.div>
       </div>
     </motion.div>

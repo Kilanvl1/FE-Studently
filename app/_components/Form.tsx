@@ -189,62 +189,6 @@ const FinalNode = () => {
   );
 };
 
-/* const HasBothGrants = (
-  <>
-    <ProvideInfo>
-      <li>You are entitled to 7076€ per year.</li>
-      <li>
-        You are entitled to free public transport on either weekdays or
-        weekends.
-      </li>
-    </ProvideInfo>
-    <div className="flex gap-x-4 mt-6">
-      <CallToAction
-        href="https://api.whatsapp.com/send?phone=31648115430"
-        label="Whats App"
-        alt="Whatsapp"
-        src={whatsapp}
-        className="bg-[#22d266] flex-1"
-      />
-      <CallToAction
-        href="https://calendly.com/youngamsterdamnetwork/30min"
-        label="Calendly"
-        alt="calendar"
-        src={calendar}
-        className="bg-[#0169fe] flex-1"
-      />
-    </div>
-  </>
-);
-
-const HasInsuranceGrant = (
-  <>
-    <ProvideInfo className="mb-4">
-      <li>You are entitled to 5600€ per year.</li>
-      <li>
-        You are entitled to free public transport on either weekdays or
-        weekends.
-      </li>
-    </ProvideInfo>
-    <div className="flex gap-x-4">
-      <CallToAction
-        href="https://api.whatsapp.com/send?phone=31648115430"
-        label="Whats App"
-        alt="Whatsapp"
-        src={whatsapp}
-        className="bg-[#22d266] flex-1"
-      />
-      <CallToAction
-        href="https://calendly.com/youngamsterdamnetwork/30min"
-        label="Calendly"
-        alt="calendar"
-        src={calendar}
-        className="bg-[#0169fe] flex-1"
-      />
-    </div>
-  </>
-); */
-
 const WorkNode = () => {
   return (
     <QuestionNode
