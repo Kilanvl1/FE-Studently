@@ -5,6 +5,7 @@ import whatsapp from "../../public/whatsapp.svg";
 import email from "../../public/mail.svg";
 import calendar from "../../public/calendar-fold.svg";
 import { Info } from "lucide-react";
+import { motion } from "framer-motion";
 
 import {
   Select,
@@ -75,18 +76,14 @@ const DecisionNode = ({
   extraInfoItems,
 }: DecisionNodeProps) => {
   const [value, setValue] = useState("");
-  const [isMounted, setIsMounted] = useState(false);
+
   const shouldRenderFirstChild = value === "yes";
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+
   return (
     <>
       <div
         className={cn(
-          `flex gap-x-4 my-4 items-center max-w-[32rem] justify-between opacity-0 transition duration-300 ${
-            isMounted ? "opacity-100" : ""
-          }`,
+          `flex gap-x-4 my-4 items-center max-w-[32rem] justify-between opacity-0 transition duration-300`,
           className
         )}
       >
@@ -109,20 +106,27 @@ const DecisionNode = ({
             </Popover>
           )}
         </div>
-
-        <Select
-          onValueChange={(e) => {
-            setValue(e);
+        <motion.div
+          whileHover={{
+            scale: 1.1,
+            color: "black",
+            backgroundColor: "bg-myBlue-test",
           }}
         >
-          <SelectTrigger className="w-auto px-4 bg-myBlue-test text-black">
-            <SelectValue placeholder="Select" />
-          </SelectTrigger>
-          <SelectContent className="bg-blue-secondary bg-myBlue-test text-black">
-            <SelectItem value="yes">Yes</SelectItem>
-            <SelectItem value="no">No</SelectItem>
-          </SelectContent>
-        </Select>
+          <Select
+            onValueChange={(e) => {
+              setValue(e);
+            }}
+          >
+            <SelectTrigger className="w-auto px-4 bg-myBlue-test text-black">
+              <SelectValue placeholder="Select" />
+            </SelectTrigger>
+            <SelectContent className="bg-blue-secondary bg-myBlue-test text-black">
+              <SelectItem value="yes">Yes</SelectItem>
+              <SelectItem value="no">No</SelectItem>
+            </SelectContent>
+          </Select>
+        </motion.div>
       </div>
       {children}
       {value &&
