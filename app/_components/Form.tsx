@@ -153,7 +153,7 @@ const QuestionNode = ({
 const FinalNode = () => {
   const { user } = useContext(UserContext);
   return (
-    <div className="my-4">
+    <div>
       <ProvideInfo>
         <li>You are entitled to 7076€ per year.</li>
         <li>
@@ -169,14 +169,7 @@ const FinalNode = () => {
           user?.work !== undefined &&
           "you need to apply for an insurance assessment in order to prevent a 500€ fine!"}
       </ProvideInfo>
-      <div className="flex gap-x-4">
-        <CallToAction
-          href="https://api.whatsapp.com/send?phone=31648115430"
-          label="Whats App"
-          alt="Whatsapp"
-          src={whatsapp}
-          className="bg-[#22d266] flex-1"
-        />
+      <div className="flex flex-col gap-y-4">
         <CallToAction
           href="https://calendly.com/youngamsterdamnetwork/30min"
           label="Calendly"
@@ -184,6 +177,21 @@ const FinalNode = () => {
           src={calendar}
           className="bg-[#0169fe] flex-1"
         />
+        <p>
+          Ready to get started? Schedule your first session with us on Calendly
+          to tailor your service and discuss your needs!
+        </p>
+        <CallToAction
+          href="https://api.whatsapp.com/send?phone=31648115430"
+          label="Whats App"
+          alt="Whatsapp"
+          src={whatsapp}
+          className="bg-[#22d266] flex-1"
+        />
+        <p>
+          Got questions or concerns? Reach out to us on WhatsApp for
+          assistance!”
+        </p>
       </div>
     </div>
   );
