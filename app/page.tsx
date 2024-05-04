@@ -28,6 +28,7 @@ export default function Home({
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
+          viewport={{ once: true }}
         >
           <section ref={formRef} className="max-w-lg mx-auto mb-32">
             <h1 className="font-semibold text-4xl text-center mb-6">
@@ -41,10 +42,10 @@ export default function Home({
                   entitled to, we need information surronding your age,
                   education type, and nationality.
                 </p>
-                <Form className={secondaryColor} />
+                <Form />
               </>
             ) : (
-              <motion.div>
+              <div>
                 <p>
                   Enter your first name and email to continue to our
                   questionnaire and unlock your benefits!
@@ -70,7 +71,7 @@ export default function Home({
                     </Button>
                   </div>
                 </form>
-              </motion.div>
+              </div>
             )}
           </section>
         </motion.div>
