@@ -97,9 +97,21 @@ const QuestionNode = ({
   const { user, updateUser } = useContext(UserContext);
 
   const handleSelectChange = (e: string) => {
+    const newUserObject = {};
+    let reachedTargetProperty = false;
+
+    for (const key in user) {
+      if (Object.prototype.hasOwnProperty.call(user, key)) {
+        if (key === propertyKey) {
+          reachedTargetProperty = true;
+        } else if (!reachedTargetProperty) {
+          newUserObject[key] = user[key];
+        }
+      }
+    }
     const valueAsBool = e === "yes" ? true : false;
     setValue(e);
-    updateUser({ ...user, [propertyKey]: valueAsBool });
+    updateUser({ ...newUserObject, [propertyKey]: valueAsBool });
   };
   return (
     <>
@@ -161,13 +173,15 @@ const FinalNode = () => {
           weekends.
         </li>
 
-        {user?.work &&
-          !user?.insurance &&
-          "You are at risk of paying a 500€ insurance fine!"}
-        {!user?.work &&
-          !user?.insurance &&
-          user?.work !== undefined &&
-          "you need to apply for an insurance assessment in order to prevent a 500€ fine!"}
+        {user?.work && !user?.insurance && (
+          <li>You are at risk of paying a 500€ insurance fine!</li>
+        )}
+        {!user?.work && !user?.insurance && user?.work !== undefined && (
+          <li>
+            you need to apply for an insurance assessment in order to prevent a
+            500€ fine!
+          </li>
+        )}
       </ProvideInfo>
       <div className="flex flex-col gap-y-4">
         <CallToAction
