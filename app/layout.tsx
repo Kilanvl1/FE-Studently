@@ -5,7 +5,11 @@ import { cn } from "../utils/utils";
 import { Header } from "./_components/Header";
 import type { Viewport } from "next";
 import Home from "./page";
-
+import { PHProvider } from "./providers/providers";
+import dynamic from "next/dynamic";
+const PostHogPageView = dynamic(() => import("./PostHogPageView"), {
+  ssr: false,
+});
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,18 +30,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={cn(
-          inter.className,
-          "bg-myBlue-base lg:bg-gradient-to-r from-myBlue-gradient via-myBlue-base  to-myBlue-gradient"
-        )}
-      >
-        <Header headerColor="bg-[#AEC6CF]" logoColor="text-myYellow-base" />
-        <Home
-          primaryColor="bg-myYellow-base"
-          secondaryColor="bg-myYellow-base"
-        />
-      </body>
+      <PHProvider>
+        <body
+          className={cn(
+            inter.className,
+            "bg-myBlue-base lg:bg-gradient-to-r from-myBlue-gradient via-myBlue-base  to-myBlue-gradient"
+          )}
+        >
+          <PostHogPageView />
+          <Header headerColor="bg-[#AEC6CF]" logoColor="text-myYellow-base" />
+          <Home
+            primaryColor="bg-myYellow-base"
+            secondaryColor="bg-myYellow-base"
+          />
+        </body>
+      </PHProvider>
     </html>
   );
 }

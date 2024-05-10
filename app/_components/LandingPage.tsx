@@ -37,7 +37,7 @@ export const LandingPage = ({
           </h3>
           <p className="text-lg my-8">
             {
-              "Don't miss out on any free benefits. Use our questionnaire to unluck your benefits!"
+              "Don't miss out on any free benefits. Use our questionnaire to unlock your benefits!"
             }
           </p>
           <Button
