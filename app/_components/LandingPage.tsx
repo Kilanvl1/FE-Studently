@@ -14,7 +14,7 @@ export const LandingPage = ({
 }) => {
   return (
     <section className="2xl:h-[840px] pt-32 2xl:p-0">
-      <div className="2xl:bg-hero bg-no-repeat bg-center flex flex-col gap-y-7 2xl:mt-10 2xl:h-[776px]">
+      <div className="2xl:bg-hero bg-no-repeat bg-center flex flex-col gap-y-7 2xl:mt-10 2xl:h-[776px] items-center 2xl:items-start">
         <Logo className="mt-8 ml-4 hidden 2xl:flex" />
         <div className="flex flex-col gap-y-7 max-w-96 2xl:mt-24 2xl:ml-12">
           <h3 className="font-bold text-3xl">

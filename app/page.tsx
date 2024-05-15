@@ -3,10 +3,7 @@ import { useRef, useState } from "react";
 import Form from "./_components/Form";
 import { LandingPage } from "./_components/LandingPage";
 import { Container } from "./_components/Container";
-import { InputWithLabel } from "@/components/ui/InputWithLabel";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+
 import star from "../public/Star.svg";
 import Image from "next/image";
 import { HighlightsSection } from "@/components/ui/HighlightsSection";
@@ -14,10 +11,7 @@ import { FormToQuestionnaire } from "@/components/ui/FormToQuestionnaire";
 export default function Home() {
   const formRef = useRef<HTMLFormElement | null>(null);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsFormSubmitted(true);
-  };
+
   return (
     <section>
       <Container>
