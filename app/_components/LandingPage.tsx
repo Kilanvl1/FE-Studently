@@ -4,7 +4,7 @@ import Image from "next/image";
 import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
 
 import banner from "../../public/iStock-1502799630 1.svg";
-import { Header } from "./Header";
+
 import { Logo } from "@/components/ui/Logo";
 
 export const LandingPage = ({
