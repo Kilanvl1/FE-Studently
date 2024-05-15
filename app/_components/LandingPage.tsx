@@ -1,69 +1,43 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import girl from "../../public/30700162_4101.jpg";
-import { motion } from "framer-motion";
+
+import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
+
+import banner from "../../public/iStock-1502799630 1.svg";
+import { Header } from "./Header";
+import { Logo } from "@/components/ui/Logo";
 
 export const LandingPage = ({
   formRef,
-  className,
 }: {
   formRef: React.RefObject<HTMLFormElement>;
-  className?: string;
 }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{
-        duration: 2,
-        delay: 0.5,
-        ease: [0, 0.71, 0.2, 1.01],
-      }}
-      className="mb-4"
-    >
-      <div className="flex justify-center items-center h-screen gap-x-8">
-        <motion.div
-          className="flex-1"
-          initial={{ x: -200 }}
-          animate={{ x: 0 }}
-          transition={{
-            duration: 1.5,
-
-            ease: [0, 0.71, 0.2, 1.01],
-          }}
-        >
-          <h3 className="font-bold text-4xl mb-8">
+    <section className="2xl:h-[840px] pt-32 2xl:p-0">
+      <div className="2xl:bg-hero bg-no-repeat bg-center flex flex-col gap-y-7 2xl:mt-10 2xl:h-[776px]">
+        <Logo className="mt-8 ml-4 hidden 2xl:flex" />
+        <div className="flex flex-col gap-y-7 max-w-96 2xl:mt-24 2xl:ml-12">
+          <h3 className="font-bold text-3xl">
             64% of international students miss out on government benefits.
           </h3>
-          <p className="text-lg my-8">
-            {
-              "Don't miss out on any free benefits. Use our questionnaire to unlock your benefits!"
-            }
-          </p>
-          <Button
-            className={`${className} text-black `}
-            onClick={() => {
-              formRef.current?.scrollIntoView({
-                behavior: "smooth",
-              });
-            }}
-          >
-            Take questionnaire
-          </Button>
-        </motion.div>
-        <motion.div
-          className="hidden lg:block flex-1 relative"
-          initial={{ x: 200 }}
-          animate={{ x: 0 }}
-          transition={{
-            duration: 1.5,
-
-            ease: [0, 0.71, 0.2, 1.01],
-          }}
-        >
-          <Image src={girl} alt="Nerd" className="rounded-full" />
-        </motion.div>
+          <BorderGradientForButton className="max-w-max">
+            <Button
+              onClick={() => {
+                formRef.current?.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }}
+            >
+              Unlock my benefits
+            </Button>
+          </BorderGradientForButton>
+        </div>
+        <Image
+          src={banner}
+          alt="Banner"
+          className="relative bottom-[78px] 2xl:hidden"
+        />
       </div>
-    </motion.div>
+    </section>
   );
 };

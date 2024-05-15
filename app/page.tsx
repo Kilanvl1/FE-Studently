@@ -7,13 +7,11 @@ import { InputWithLabel } from "@/components/ui/InputWithLabel";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-export default function Home({
-  primaryColor,
-  secondaryColor,
-}: {
-  primaryColor: string;
-  secondaryColor?: string;
-}) {
+import star from "../public/Star.svg";
+import Image from "next/image";
+import { HighlightsSection } from "@/components/ui/HighlightsSection";
+import { FormToQuestionnaire } from "@/components/ui/FormToQuestionnaire";
+export default function Home() {
   const formRef = useRef<HTMLFormElement | null>(null);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,20 +19,20 @@ export default function Home({
     setIsFormSubmitted(true);
   };
   return (
-    <main>
+    <section>
       <Container>
-        <LandingPage formRef={formRef} className={primaryColor} />
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-        >
+        <LandingPage formRef={formRef} />
+        <section className="flex flex-col gap-y-4 py-14 items-center">
+          <div className="flex gap-x-[2px] items-center">
+            <Image src={star} alt="star" className="h-5 w-5" />
+            <h1 className="font-medium text-xl">5.0</h1>
+          </div>
+          <h1 className="text-lg">Trusted by +400 students in Amsterdam.</h1>
+        </section>
+        <HighlightsSection />
+        <FormToQuestionnaire />
+        <div>
           <section ref={formRef} className="max-w-lg mx-auto mb-32">
-            <h1 className="font-semibold text-4xl text-center mb-6">
-              Unlock your benefits!
-            </h1>
-
             {isFormSubmitted ? (
               <>
                 <p className="text-justify">
@@ -45,37 +43,11 @@ export default function Home({
                 <Form />
               </>
             ) : (
-              <div>
-                <p>
-                  Enter your first name and email to continue to our
-                  questionnaire and unlock your benefits!
-                </p>
-                <form onSubmit={handleSubmit}>
-                  <InputWithLabel
-                    label="First name"
-                    placeholder="Enter your name..."
-                    required={true}
-                  />
-                  <InputWithLabel
-                    label="Email"
-                    placeholder="Enter your email..."
-                    type="email"
-                    required={true}
-                  />
-                  <div className="flex justify-center">
-                    <Button
-                      type="submit"
-                      className={cn(primaryColor, "text-black")}
-                    >
-                      Unlock your benefits
-                    </Button>
-                  </div>
-                </form>
-              </div>
+              <div></div>
             )}
           </section>
-        </motion.div>
+        </div>
       </Container>
-    </main>
+    </section>
   );
 }

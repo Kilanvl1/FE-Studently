@@ -19,6 +19,12 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        hero: "url('../public/bannerDesktop.svg')",
+      },
+      screens: {
+        "2xl": "1440px",
+      },
       colors: {
         myYellow: {
           base: "#FFF9B8",
@@ -42,6 +48,17 @@ const config = {
           test: "#BEC1D3",
           test2: "#CBBECE",
         },
+        borderGradient: {
+          start: "#FF6262",
+          middle: "#000000",
+          end: "#5768FF",
+        },
+        backgroundGradient: {
+          start: "#F2F2F2",
+          end: "#D7F2F3",
+        },
+
+        myGray: "#E0E8E7",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

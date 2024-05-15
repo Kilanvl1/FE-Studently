@@ -1,18 +1,11 @@
-import { Globe } from "lucide-react";
-export const Header = ({
-  headerColor,
-  logoColor,
-}: {
-  headerColor: string;
-  logoColor: string;
-}) => {
+import Image from "next/image";
+import { Container } from "./Container";
+import { Logo } from "@/components/ui/Logo";
+export const Header = () => {
   return (
-    <header
-      className={`p-4 fixed w-full ${headerColor} lg:bg-gradient-to-r from-myBlue-gradient via-myBlue-base to-myBlue-gradient`}
-    >
-      <nav className="flex max-w-screen-lg gap-x-1 mx-auto items-center">
-        <Globe className={`${logoColor}`} />
-        <h1 className="font-semibold text-lg ">Young Amsterdam Network.</h1>
+    <header className="py-4 px-5 fixed w-full z-10 min-h-16 bg-backgroundGradient-start 2xl:hidden">
+      <nav className="flex gap-x-1 mx-auto items-center">
+        <Logo />
       </nav>
     </header>
   );
