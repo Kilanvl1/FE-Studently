@@ -8,7 +8,7 @@ export const Footer = () => {
           <Image src={logofooter} alt="logoFooter" />
           <h1>Studently</h1>
         </div>
-        <div className="text-[#838d92]">© YAN 2024</div>
+        <div className="text-[#838d92]">© Studently 2024</div>
       </div>
     </footer>
   );

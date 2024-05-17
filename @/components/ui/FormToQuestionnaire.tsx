@@ -3,7 +3,13 @@ import { Button } from "@/components/ui/button";
 import { BorderGradientForButton } from "./BorderGradientForButton";
 import rocketGraphic from "../../../public/rocketGraphic.svg";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 export const FormToQuestionnaire = () => {
+  const router = useRouter();
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    router.push("/questionnaire");
+  };
   return (
     <section className="py-10 2xl:pt-24">
       <div className="flex flex-col gap-y-5 2xl:flex-row 2xl:justify-center gap-x-20">
@@ -11,11 +17,7 @@ export const FormToQuestionnaire = () => {
           <h1 className="font-bold text-[28px] leading-8">
             Start the questionnaire to unlock your benefits!
           </h1>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
-          >
+          <form onSubmit={handelSubmit}>
             <InputWithLabel
               label="First name"
               placeholder="First name"
