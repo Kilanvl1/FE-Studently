@@ -7,6 +7,8 @@ import { CallToAction } from "@/components/ui/CallToAction";
 import calendar from "../../public/calendar-fold.svg";
 import whatsapp from "../../public/whatsapp.svg";
 import X from "../../public/XCircle.svg";
+import checkCircle from "../../public/CheckCircle.png";
+import check from "../../public/Check.svg";
 import {
   UserContext,
   User,
@@ -14,17 +16,27 @@ import {
 } from "@/components/ui/QuestionNode";
 import { InputWithLabel } from "./ui/InputWithLabel";
 import { LeafNode } from "./ui/LeafNode";
+import { BorderGradientForButton } from "./ui/BorderGradientForButton";
+import { ButtonChevron } from "./ui/ButtonChevron";
+import Image from "next/image";
 
 export const QuestionnaireSection = () => {
   const [user, setUser] = useState<User>({ age: "" });
   const updateUser = (newUser: User) => {
     setUser(newUser);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Coming soon");
+  };
   const contextValue: UserContextType = { user, updateUser };
 
   const ageAsNumber = parseInt(user.age);
   return (
-    <form className="flex flex-col gap-y-5 2xl:flex-1">
+    <form
+      className="flex flex-col gap-y-5 2xl:flex-1 min-h-[80vh]"
+      onSubmit={handleSubmit}
+    >
       <InputWithLabel
         placeholder="Type your age..."
         label="Your age"
@@ -136,7 +148,7 @@ const InsuranceNode = () => {
     <QuestionNode
       propertyKey="insurance"
       question="Do you have a Dutch health insurance?"
-      followUpOnYes={<FinalNode />}
+      followUpOnYes={<SeeResultsButton />}
       followUpOnNo={<WorkNode />}
       provideQuestionInfo={[
         "Everyone who lives or works in the Netherlands, is required by law to have a Dutch health insurance.",
@@ -153,20 +165,39 @@ const RequirementsNode = () => {
       propertyKey="requirements"
       question="Do you meet one of the two following requirements?"
       followUpOnYes={<InsuranceNode />}
-      followUpOnNo="
-        In order to qualify for the student benefits you need to meet one of
-          the above requirements. Don't meet the above requirements? don't
-          worry! Select yes and we will help you at a later stage.
-        "
+      followUpOnNo={
+        <>
+          <LeafNode
+            info="In order to qualify for the student benefits you need to meet one of
+          the above requirements."
+            bgColor="bg-[#F1DADA]"
+            icon={X}
+            prompt="Oops..."
+          />
+          <LeafNode
+            info="Don't meet the above requirements? don't
+          worry! Select yes and we will help you at a later stage."
+            icon={checkCircle}
+            bgColor="bg-[#D3D4F6]"
+            prompt="But wait..."
+          />
+        </>
+      }
     >
-      <ProvideInfo>
-        <li>Lived in the Netherlands for at least 5 years</li>
-        {user?.age >= 21 ? (
-          <li>You work at least 32 hours a month.</li>
-        ) : (
-          <li>You earn at least 155 Euros a month.</li>
-        )}
-      </ProvideInfo>
+      <div className="mb-4">
+        <div className="items-center flex mb-2 gap-x-3">
+          <Image src={check} alt="check" />
+          <p>Lived in the Netherlands at least 5 years.</p>
+        </div>
+        <div className=" items-center flex gap-x-3">
+          <Image src={check} alt="check" />
+          {user.age > 21 ? (
+            <p>You earn a minimum of 155€ a month</p>
+          ) : (
+            <p>You work at least 32 hours a month.</p>
+          )}
+        </div>
+      </div>
     </QuestionNode>
   );
 };
@@ -177,7 +208,16 @@ const EUPassportNode = () => {
       propertyKey="eu-passport"
       question="Do you have an EU passport?"
       followUpOnYes={<RequirementsNode />}
-      followUpOnNo="Unfortunately all student benefits are only for EU passport holders."
+      followUpOnNo={
+        <LeafNode
+          info={
+            "Unfortunately all student benefits are only for EU passport holders."
+          }
+          bgColor="bg-[#F1DADA]"
+          icon={X}
+          prompt="Oops..."
+        />
+      }
     />
   );
 };
@@ -188,12 +228,20 @@ const DutchNationalityNode = () => {
       key="0"
       propertyKey="dutch-nationality"
       question="Are you from the Netherlands?"
-      followUpOnYes={<FinalNode />}
+      followUpOnYes={<SeeResultsButton />}
       followUpOnNo={<EUPassportNode />}
       provideQuestionInfo={[
         "You have a Dutch passport or,",
         "You are a Dutch citizen",
       ]}
     />
+  );
+};
+
+const SeeResultsButton = () => {
+  return (
+    <BorderGradientForButton className="max-w-max">
+      <ButtonChevron>See results</ButtonChevron>
+    </BorderGradientForButton>
   );
 };

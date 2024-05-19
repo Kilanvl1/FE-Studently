@@ -1,5 +1,5 @@
 import { InputWithLabel } from "@/components/ui/InputWithLabel";
-import { Button } from "@/components/ui/button";
+import { ButtonChevron } from "@/components/ui/ButtonChevron";
 import { BorderGradientForButton } from "./BorderGradientForButton";
 import rocketGraphic from "../../../public/rocketGraphic.svg";
 import Image from "next/image";
@@ -30,7 +30,7 @@ export const FormToQuestionnaire = () => {
               required={true}
             />
             <BorderGradientForButton className="max-w-max">
-              <Button type="submit">Next step</Button>
+              <ButtonChevron type="submit">Next step</ButtonChevron>
             </BorderGradientForButton>
           </form>
         </div>

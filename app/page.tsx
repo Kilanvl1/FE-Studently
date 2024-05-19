@@ -10,7 +10,6 @@ import { HighlightsSection } from "@/components/ui/HighlightsSection";
 import { FormToQuestionnaire } from "@/components/ui/FormToQuestionnaire";
 export default function Home() {
   const formRef = useRef<HTMLFormElement | null>(null);
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   return (
     <section>
@@ -24,23 +23,9 @@ export default function Home() {
           <h1 className="text-lg">Trusted by +400 students in Amsterdam.</h1>
         </section>
         <HighlightsSection />
-        <FormToQuestionnaire />
-        <div>
-          <section ref={formRef} className="max-w-lg mx-auto mb-32">
-            {isFormSubmitted ? (
-              <>
-                <p className="text-justify">
-                  In order to determine what government benefits you are
-                  entitled to, we need information surronding your age,
-                  education type, and nationality.
-                </p>
-                <Form />
-              </>
-            ) : (
-              <div></div>
-            )}
-          </section>
-        </div>
+        <section ref={formRef}>
+          <FormToQuestionnaire />
+        </section>
       </Container>
     </section>
   );

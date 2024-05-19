@@ -1,11 +1,4 @@
 import { useState, useContext, createContext } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 import {
   Popover,
@@ -14,11 +7,12 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 
-import { motion } from "framer-motion";
 import info from "../../../public/Info.svg";
 
-import { Info } from "lucide-react";
 import Image from "next/image";
+import { RadioGroup, RadioGroupItem } from "./radio-group";
+import { Label } from "./label";
+import { BorderGradientForButton } from "./BorderGradientForButton";
 export type User = {
   [key: string]: any;
 };
@@ -74,7 +68,7 @@ export const QuestionNode = ({
     <>
       <div
         className={cn(
-          `flex gap-x-4 mb-4 items-center max-w-[32rem] justify-between transition duration-300`
+          `flex flex-col gap-y-2 gap-x-4 mb-4 max-w-[32rem] justify-between transition duration-300`
         )}
       >
         <div className="flex items-center gap-x-2">
@@ -96,25 +90,44 @@ export const QuestionNode = ({
             </Popover>
           )}
         </div>
-        <motion.div
-          whileHover={{
-            scale: 1.1,
-          }}
-        >
-          <Select onValueChange={handleSelectChange}>
-            <SelectTrigger className="w-auto px-4 bg-myBlue-test text-black">
-              <SelectValue placeholder="Select" />
-            </SelectTrigger>
-            <SelectContent className=" bg-myBlue-test text-black">
-              <SelectItem value="yes">Yes</SelectItem>
-              <SelectItem value="no">No</SelectItem>
-            </SelectContent>
-          </Select>
-        </motion.div>
+        {children}
+        <RadioGroup onValueChange={handleSelectChange}>
+          {value === "yes" ? (
+            <BorderGradientForButton
+              fillColor="bg-white"
+              roundedSize="rounded-lg"
+              borderWidthClass="-inset-[1px]"
+            >
+              <MyRadioGroupItem value="yes" />
+            </BorderGradientForButton>
+          ) : (
+            <MyRadioGroupItem value="yes" />
+          )}
+          {value === "no" ? (
+            <BorderGradientForButton
+              fillColor="bg-white "
+              roundedSize="rounded-lg"
+              borderWidthClass="-inset-[1px]"
+            >
+              <MyRadioGroupItem value="no" />
+            </BorderGradientForButton>
+          ) : (
+            <MyRadioGroupItem value="no" />
+          )}
+        </RadioGroup>
       </div>
-      {children}
+
       {value === "yes" && followUpOnYes}
       {value === "no" && followUpOnNo}
     </>
+  );
+};
+
+const MyRadioGroupItem = ({ value }: { value: "yes" | "no" }) => {
+  return (
+    <div className="flex items-center space-x-4 rounded-lg py-4 px-2 border-[#DEDEDE] border bg-white">
+      <RadioGroupItem value={value} className="font-medium" />
+      <Label className="font-normal text-base">{value}</Label>
+    </div>
   );
 };

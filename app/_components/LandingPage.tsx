@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { ButtonChevron } from "@/components/ui/ButtonChevron";
 import Image from "next/image";
 
 import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
@@ -21,7 +21,7 @@ export const LandingPage = ({
             64% of international students miss out on government benefits.
           </h3>
           <BorderGradientForButton className="max-w-max">
-            <Button
+            <ButtonChevron
               onClick={() => {
                 formRef.current?.scrollIntoView({
                   behavior: "smooth",
@@ -29,7 +29,7 @@ export const LandingPage = ({
               }}
             >
               Unlock my benefits
-            </Button>
+            </ButtonChevron>
           </BorderGradientForButton>
         </div>
         <Image
