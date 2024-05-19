@@ -74,7 +74,7 @@ export const QuestionNode = ({
     <>
       <div
         className={cn(
-          `flex gap-x-4 my-4 items-center max-w-[32rem] justify-between transition duration-300`
+          `flex gap-x-4 mb-4 items-center max-w-[32rem] justify-between transition duration-300`
         )}
       >
         <div className="flex items-center gap-x-2">

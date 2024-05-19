@@ -17,7 +17,9 @@ export function InputWithLabel({
 }: InputWithLabelProps) {
   return (
     <div className="grid w-full items-center gap-1.5 my-5">
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id} className="font-normal text-base">
+        {label}
+      </Label>
       <Input
         type={type}
         id={id}

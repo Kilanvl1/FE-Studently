@@ -24,7 +24,7 @@ export const QuestionnaireSection = () => {
 
   const ageAsNumber = parseInt(user.age);
   return (
-    <form className="flex flex-col gap-y-5">
+    <form className="flex flex-col gap-y-5 2xl:flex-1">
       <InputWithLabel
         placeholder="Type your age..."
         label="Your age"
