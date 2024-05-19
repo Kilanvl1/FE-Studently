@@ -1,6 +1,5 @@
-import { Button } from "./Button";
+import { Button, ButtonProps } from "./button";
 import { ChevronRight } from "lucide-react";
-import { ButtonProps } from "./Button";
 
 export const ButtonChevron = ({ children, ...props }: ButtonProps) => {
   return (

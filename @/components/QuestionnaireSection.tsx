@@ -137,8 +137,8 @@ const WorkNode = () => {
     <QuestionNode
       propertyKey="work"
       question="Do you have a job in the Netherlands?"
-      followUpOnYes={<FinalNode />}
-      followUpOnNo={<FinalNode />}
+      followUpOnYes={<SeeResultsButton />}
+      followUpOnNo={<SeeResultsButton />}
     />
   );
 };
