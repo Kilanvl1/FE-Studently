@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { InputWithLabel } from "@/components/ui/InputWithLabel";
 import { ButtonChevron } from "@/components/ui/ButtonChevron";
 import { BorderGradientForButton } from "./BorderGradientForButton";
@@ -6,9 +7,12 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 export const FormToQuestionnaire = () => {
   const router = useRouter();
+  const [userName, setUserName] = useState("");
   const handelSubmit = (e) => {
     e.preventDefault();
-    router.push("/questionnaire");
+
+    const query = new URLSearchParams({ name: userName }).toString();
+    router.push(`/questionnaire?${query}`);
   };
   return (
     <section className="py-10 2xl:pt-24">
@@ -22,6 +26,7 @@ export const FormToQuestionnaire = () => {
               label="First name"
               placeholder="First name"
               required={true}
+              onChange={(e) => setUserName(e.target.value)}
             />
             <InputWithLabel
               label="Email"

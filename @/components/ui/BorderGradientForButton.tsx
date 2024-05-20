@@ -7,6 +7,7 @@ type BorderGradientForButtonProps = {
   fillColor?: string;
   roundedSize?: string;
   borderWidthClass?: string;
+  gradientDirection?: string;
 };
 
 export const BorderGradientForButton = ({
@@ -15,14 +16,16 @@ export const BorderGradientForButton = ({
   fillColor = "bg-black",
   roundedSize = "rounded-2xl",
   borderWidthClass = "-inset-[2px]",
+  gradientDirection = "bg-gradient-to-r",
 }: BorderGradientForButtonProps) => {
   return (
     <div className={`relative ${className}`}>
       <div
         className={cn(
-          `absolute bg-gradient-to-r from-borderGradient-start to-borderGradient-end`,
+          `absolute from-borderGradient-start to-borderGradient-end`,
           roundedSize,
-          borderWidthClass
+          borderWidthClass,
+          gradientDirection
         )}
         aria-hidden="true"
       ></div>
