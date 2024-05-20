@@ -98,10 +98,10 @@ export const QuestionNode = ({
               roundedSize="rounded-lg"
               borderWidthClass="-inset-[1px]"
             >
-              <MyRadioGroupItem value="yes" />
+              <MyRadioGroupItem value="yes" label="Yes" />
             </BorderGradientForButton>
           ) : (
-            <MyRadioGroupItem value="yes" />
+            <MyRadioGroupItem value="yes" label="Yes" />
           )}
           {value === "no" ? (
             <BorderGradientForButton
@@ -109,10 +109,10 @@ export const QuestionNode = ({
               roundedSize="rounded-lg"
               borderWidthClass="-inset-[1px]"
             >
-              <MyRadioGroupItem value="no" />
+              <MyRadioGroupItem value="no" label="No" />
             </BorderGradientForButton>
           ) : (
-            <MyRadioGroupItem value="no" />
+            <MyRadioGroupItem value="no" label="No" />
           )}
         </RadioGroup>
       </div>
@@ -123,11 +123,17 @@ export const QuestionNode = ({
   );
 };
 
-const MyRadioGroupItem = ({ value }: { value: "yes" | "no" }) => {
+const MyRadioGroupItem = ({
+  value,
+  label,
+}: {
+  value: "no" | "yes";
+  label: "Yes" | "No";
+}) => {
   return (
     <div className="flex items-center space-x-4 rounded-lg py-4 px-2 border-[#DEDEDE] border bg-white">
       <RadioGroupItem value={value} className="font-medium" />
-      <Label className="font-normal text-base">{value}</Label>
+      <Label className="font-normal text-base">{label}</Label>
     </div>
   );
 };

@@ -159,7 +159,7 @@ const InsuranceNode = () => {
 
 const RequirementsNode = () => {
   const { user } = useContext(UserContext);
-
+  console.log(user.age);
   return (
     <QuestionNode
       propertyKey="requirements"
@@ -191,10 +191,10 @@ const RequirementsNode = () => {
         </div>
         <div className=" items-center flex gap-x-3">
           <Image src={check} alt="check" />
-          {user.age > 21 ? (
-            <p>You earn a minimum of 155€ a month</p>
-          ) : (
+          {user.age >= 21 ? (
             <p>You work at least 32 hours a month.</p>
+          ) : (
+            <p>You earn a minimum of 155€ a month</p>
           )}
         </div>
       </div>
