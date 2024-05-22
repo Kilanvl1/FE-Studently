@@ -43,7 +43,6 @@ export const ResultsOverview = () => {
           </div>
         </BorderGradientForButton>
       </div>
-      <Calendly />
     </div>
   );
 };
