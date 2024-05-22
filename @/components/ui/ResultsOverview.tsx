@@ -5,7 +5,6 @@ import checkmark from "../../../public/CheckedCircle.svg";
 import coin from "../../../public/Coin.svg";
 import bus from "../../../public/Bus.svg";
 import { BorderGradientForButton } from "./BorderGradientForButton";
-import { Calendly } from "./Calendly";
 
 export const ResultsOverview = () => {
   const searchParams = useSearchParams();
@@ -20,9 +19,10 @@ export const ResultsOverview = () => {
         <p className="font-normal">You are entitled to:</p>
         <BorderGradientForButton
           fillColor="transparent"
-          roundedSize="rounded-md"
-          borderWidthClass="-inset-[1px]"
-          gradientDirection="bg-gradient-to-b"
+          roundedSize="md"
+          borderWidth="sm"
+          gradientDirection="toB"
+          gradientColors="purple"
         >
           <div className="bg-gradient-to-b from-[#FFFFFF] to-[#E7F5F6] py-9 px-7 rounded-md flex flex-col gap-y-4">
             <div className="flex items-start gap-x-4">

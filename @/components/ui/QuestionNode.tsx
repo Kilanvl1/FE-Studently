@@ -94,9 +94,9 @@ export const QuestionNode = ({
         <RadioGroup onValueChange={handleSelectChange}>
           {value === "yes" ? (
             <BorderGradientForButton
-              fillColor="bg-white"
-              roundedSize="rounded-lg"
-              borderWidthClass="-inset-[1px]"
+              fillColor="white"
+              roundedSize="lg"
+              borderWidth="sm"
             >
               <MyRadioGroupItem value="yes" label="Yes" />
             </BorderGradientForButton>
@@ -105,9 +105,9 @@ export const QuestionNode = ({
           )}
           {value === "no" ? (
             <BorderGradientForButton
-              fillColor="bg-white "
-              roundedSize="rounded-lg"
-              borderWidthClass="-inset-[1px]"
+              fillColor="white"
+              roundedSize="lg"
+              borderWidth="sm"
             >
               <MyRadioGroupItem value="no" label="No" />
             </BorderGradientForButton>

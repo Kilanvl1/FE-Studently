@@ -15,25 +15,25 @@ export const HighlightsSection = () => {
           image={chat}
           alt="chat"
           title="Get a response in less than 24h"
-          subTitle="Lorem ipsum dolor sit amet consectetur"
+          subTitle="Lorem ipsum dolor sit amet"
         />
         <Highlight
           image={piggy}
           alt="piggy"
           title="Save your time and effort"
-          subTitle="Lorem ipsum dolor sit amet consectetur"
+          subTitle="Lorem ipsum dolor sit amet"
         />
         <Highlight
           image={binoculars}
           alt="binoculars"
           title="Expert guidance and support"
-          subTitle="Lorem ipsum dolor sit amet consectetur"
+          subTitle="Lorem ipsum dolor sit amet"
         />
         <Highlight
           image={rocket}
           alt="rocket"
           title="Maximize eligibility"
-          subTitle="Lorem ipsum dolor sit amet consectetur"
+          subTitle="Lorem ipsum dolor sit amet"
         />
       </div>
     </section>

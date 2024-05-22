@@ -57,6 +57,12 @@ const config = {
           start: "#F2F2F2",
           end: "#D7F2F3",
         },
+        gradients: {
+          greenBlue: {
+            start: "#27E727",
+            end: "#5768FF",
+          },
+        },
 
         myGray: "#E0E8E7",
         border: "hsl(var(--border))",

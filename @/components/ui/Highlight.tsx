@@ -22,7 +22,7 @@ export const Highlight = ({
         className="mb-4 2xl:order-last 2xl:h-10 2xl:w-10"
       />
       <div className="max-w-36">
-        <h1 className="font-bold text-[17px] mb-2">{title}</h1>
+        <h1 className="font-bold mb-2">{title}</h1>
         <p className="font-normal text-sm">{subTitle}</p>
       </div>
     </div>
