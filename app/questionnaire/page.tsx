@@ -1,6 +1,7 @@
 import { Container } from "app/_components/Container";
 
 import { QuestionnaireSection } from "@/components/QuestionnaireSection";
+import { Suspense } from "react";
 
 export default function QuestionnairePage() {
   return (
@@ -15,7 +16,9 @@ export default function QuestionnairePage() {
             we need the following information:
           </p>
         </div>
-        <QuestionnaireSection />
+        <Suspense>
+          <QuestionnaireSection />
+        </Suspense>
       </div>
     </Container>
   );
