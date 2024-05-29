@@ -98,15 +98,13 @@ const RequirementsNode = () => {
       followUpOnNo={
         <>
           <LeafNode
-            info="In order to qualify for the student benefits you need to meet one of
-          the above requirements."
+            info=" In order to qualify for student benefits, you need to meet one of the above requirements (either have lived in the Netherlands for at least 5 years or earn a minimum of €155 a month). Unfortunately, without meeting these criteria, you are not currently eligible for student finance."
             bgColor="bg-[#F1DADA]"
             icon={X}
             prompt="Oops..."
           />
           <LeafNode
-            info="Don't meet the above requirements? don't
-          worry! Select yes and we will help you at a later stage."
+            info="Don’t meet the above requirements? Don’t worry! Select “Yes” and we will help you navigate other potential options or guide you on how to become eligible at a later stage. We are here to support you every step of the way."
             icon={checkCircle}
             bgColor="bg-[#D3D4F6]"
             prompt="But wait..."

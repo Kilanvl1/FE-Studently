@@ -29,7 +29,9 @@ export const ResultsOverview = () => {
               <Image src={coin} alt="coin" className="pt-[6px]" />
               <div className="flex flex-col gap-y-2">
                 <h1 className="font-bold text-xl">7.076/Year</h1>
-                <p className="text-sm">One-off payment by bank transfer</p>
+                <p className="text-sm">
+                  Benefits are paid out monthly to your bank account by DUO.
+                </p>
               </div>
             </div>
             <div className="mx-auto max-w-3/5 "></div>

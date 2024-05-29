@@ -1,6 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
-import Form from "./_components/Form";
+import { useRef } from "react";
 import { LandingPage } from "./_components/LandingPage";
 import { Container } from "./_components/Container";
 
@@ -18,7 +17,7 @@ export default function Home() {
         <section className="flex flex-col gap-y-4 py-14 items-center">
           <div className="flex gap-x-[2px] items-center">
             <Image src={star} alt="star" className="h-5 w-5" />
-            <h1 className="font-medium text-xl">5.0</h1>
+            <h1 className="font-medium text-xl">4.7</h1>
           </div>
           <h1 className="text-lg">Trusted by +400 students in Amsterdam.</h1>
         </section>
