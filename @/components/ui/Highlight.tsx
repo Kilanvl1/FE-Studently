@@ -15,7 +15,7 @@ export const Highlight = ({
   alt,
 }: HighlightProps) => {
   return (
-    <div className="flex flex-col rounded-xl bg-gradient-to-b from-[#FFFFFF] to-[#E7F5F6] py-5 px-3 2xl:flex-row 2xl:py-12 2xl:px-10 2xl:gap-x-20">
+    <div className="flex flex-col rounded-xl bg-gradient-to-b from-[#FFFFFF] to-[#E7F5F6] py-5 px-3 2xl:flex-row 2xl:py-12 2xl:px-10 2xl:gap-x-20 2xl:justify-between max-w-96">
       <Image
         src={image}
         alt={alt}

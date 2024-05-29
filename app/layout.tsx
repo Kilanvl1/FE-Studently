@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="icon" href="/Logo.ico" sizes="any" />
+      <link rel="icon" href="/Favicon.ico" sizes="any" />
       <PHProvider>
         <body
           className={cn(

@@ -1,8 +1,6 @@
 "use client";
 import { QuestionNode } from "@/components/ui/QuestionNode";
 import { useContext, useState } from "react";
-
-import { ProvideInfo } from "@/components/ui/ProvideInfo";
 import X from "../../public/XCircle.svg";
 import checkCircle from "../../public/CheckCircle.png";
 import check from "../../public/Check.svg";
@@ -37,7 +35,7 @@ export const QuestionnaireSection = () => {
   const ageAsNumber = parseInt(user.age);
   return (
     <form
-      className="flex flex-col gap-y-5 2xl:flex-1 min-h-[80vh]"
+      className="flex flex-col gap-y-5 2xl:flex-1 min-h-[80vh] max-w-[668px]"
       onSubmit={handleSubmit}
     >
       <InputWithLabel
@@ -47,16 +45,19 @@ export const QuestionnaireSection = () => {
         value={ageAsNumber}
         onChange={(e) => setUser((prev) => ({ ...prev, age: e.target.value }))}
       />
-      {ageAsNumber <= 30 && ageAsNumber && (
+      {ageAsNumber <= 32 && ageAsNumber && (
         <UserContext.Provider value={contextValue}>
           <RootNode />
         </UserContext.Provider>
       )}
 
-      {ageAsNumber > 30 && (
-        <ProvideInfo className="my-4 border-red-600 px-8">
-          <li>Only students below the age of 30 are entitled to benefits</li>
-        </ProvideInfo>
+      {ageAsNumber > 32 && (
+        <LeafNode
+          bgColor="bg-[#F1DADA]"
+          prompt="Oops..."
+          info="In order to qualify for student benefits, you need to meet certain age requirements. Unfortunately, if you are above the age of 32, you are not eligible for student finance under the current regulations."
+          icon={X}
+        />
       )}
     </form>
   );
@@ -150,13 +151,27 @@ const EUPassportNode = () => {
   );
 };
 
+const LivingAwayFromHomeNode = () => {
+  return (
+    <QuestionNode
+      propertyKey="living-away-from-home"
+      question="Do you live away from home?"
+      followUpOnYes={<SeeResultsButton />}
+      followUpOnNo={<SeeResultsButton />}
+      provideQuestionInfo={[
+        "You are living away from home if you are registered with the municipality at a different address than your parent(s).",
+      ]}
+    />
+  );
+};
+
 const DutchNationalityNode = () => {
   return (
     <QuestionNode
       key="0"
       propertyKey="dutch-nationality"
       question="Are you from the Netherlands?"
-      followUpOnYes={<SeeResultsButton />}
+      followUpOnYes={<LivingAwayFromHomeNode />}
       followUpOnNo={<EUPassportNode />}
       provideQuestionInfo={[
         "You have a Dutch passport or,",
