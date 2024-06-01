@@ -1,4 +1,4 @@
-import { useState, useContext, createContext } from "react";
+import { useState, useContext, createContext, useRef, useEffect } from "react";
 
 import {
   Popover,
@@ -46,7 +46,7 @@ export const QuestionNode = ({
 }: QuestionNodeProps) => {
   const [value, setValue] = useState("");
   const { user, updateUser } = useContext(UserContext);
-
+  const nextQuestionRef = useRef<HTMLDivElement>(null);
   const handleSelectChange = (e: string) => {
     const newUserObject = {};
     let reachedTargetProperty = false;
@@ -64,6 +64,15 @@ export const QuestionNode = ({
     setValue(e);
     updateUser({ ...newUserObject, [propertyKey]: valueAsBool });
   };
+
+  useEffect(() => {
+    if (nextQuestionRef.current) {
+      nextQuestionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [value]);
   return (
     <>
       <div
@@ -116,9 +125,10 @@ export const QuestionNode = ({
           )}
         </RadioGroup>
       </div>
-
-      {value === "yes" && followUpOnYes}
-      {value === "no" && followUpOnNo}
+      <div ref={nextQuestionRef}>
+        {value === "yes" && followUpOnYes}
+        {value === "no" && followUpOnNo}
+      </div>
     </>
   );
 };

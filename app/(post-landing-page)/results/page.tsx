@@ -1,4 +1,3 @@
-import { Calendly } from "@/components/ui/Calendly";
 import { ResultsOverview } from "@/components/ui/ResultsOverview";
 import { Container } from "app/_components/Container";
 import { Suspense } from "react";
@@ -7,13 +6,15 @@ import { Whatsapp } from "@/components/ui/Whatsapp";
 
 export default function ResultsPage() {
   return (
-    <section className="pt-16">
+    <section className="py-16">
       <Container>
         <Suspense>
-          <div className="flex flex-col gap-y-12">
+          <div className="flex flex-col gap-y-12 2xl:flex-row 2xl:justify-between">
             <ResultsOverview />
-            <BookApointment />
-            <Whatsapp />
+            <div className="flex flex-col gap-y-10">
+              <BookApointment />
+              <Whatsapp />
+            </div>
           </div>
         </Suspense>
       </Container>

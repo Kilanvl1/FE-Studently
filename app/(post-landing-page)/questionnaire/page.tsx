@@ -6,7 +6,7 @@ import { Suspense } from "react";
 export default function QuestionnairePage() {
   return (
     <Container className="pt-32">
-      <div className="2xl:flex gap-x-20 2xl:justify-center">
+      <div className="2xl:flex gap-x-20 2xl:justify-between">
         <div className="max-w-96 mb-5">
           <h1 className="font-bold text-3xl mb-5 2xl:text-4xl">
             Answer the following questions

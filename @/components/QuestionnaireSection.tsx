@@ -74,12 +74,26 @@ const WorkNode = () => {
   );
 };
 
+const InsuranceBenefitNode = () => {
+  return (
+    <QuestionNode
+      propertyKey="insurance-benefit"
+      question="Are you receiving a health insurance benefit?"
+      followUpOnYes={<SeeResultsButton />}
+      followUpOnNo={<SeeResultsButton />}
+      provideQuestionInfo={[
+        "A health insurance benefit means that you are receiving money from the government to help pay for your health insurance.",
+      ]}
+    />
+  );
+};
+
 const InsuranceNode = () => {
   return (
     <QuestionNode
       propertyKey="insurance"
       question="Do you have a Dutch health insurance?"
-      followUpOnYes={<SeeResultsButton />}
+      followUpOnYes={<InsuranceBenefitNode />}
       followUpOnNo={<WorkNode />}
       provideQuestionInfo={[
         "Everyone who lives or works in the Netherlands, is required by law to have a Dutch health insurance.",

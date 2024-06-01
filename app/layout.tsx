@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "../utils/utils";
-import { Header } from "./_components/Header";
+import { Header } from "./_components/HeaderLandingPage";
 import type { Viewport } from "next";
 import { PHProvider } from "./providers/providers";
 import dynamic from "next/dynamic";

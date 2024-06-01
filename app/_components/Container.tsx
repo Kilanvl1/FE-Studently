@@ -5,9 +5,7 @@ export type ContainerProps = {
 
 export const Container = ({ children, className }: ContainerProps) => {
   return (
-    <div
-      className={`mx-auto w-full 2xl:px-10 max-w-screen-2xl px-5 ${className}`}
-    >
+    <div className={`mx-auto w-full max-w-screen-2xl px-5 ${className}`}>
       {children}
     </div>
   );
