@@ -42,7 +42,7 @@ export const QuestionnaireSection = () => {
         placeholder="Type your age..."
         label="Your age"
         type="number"
-        value={ageAsNumber}
+        value={ageAsNumber || ""}
         onChange={(e) => setUser((prev) => ({ ...prev, age: e.target.value }))}
       />
       {ageAsNumber <= 32 && ageAsNumber && (
