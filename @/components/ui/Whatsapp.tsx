@@ -2,6 +2,7 @@ import { BorderGradientForButton } from "./BorderGradientForButton";
 import { Button } from "./button";
 import whatsapp from "../../../public/Vector.svg";
 import Image from "next/image";
+import Link from "next/link";
 export const Whatsapp = () => {
   return (
     <div className="flex flex-col gap-y-5">
@@ -11,10 +12,12 @@ export const Whatsapp = () => {
         fillColor="transparent"
         gradientColors="green"
       >
-        <Button className="flex gap-x-4 bg-white rounded-2xl">
-          <Image src={whatsapp} alt="whatsapp" />
-          <p className="text-black">Whatsapp</p>
-        </Button>
+        <Link href="https://wa.me/31648115430">
+          <Button className="flex gap-x-4 bg-white rounded-2xl">
+            <Image src={whatsapp} alt="whatsapp" />
+            <p className="text-black">Whatsapp</p>
+          </Button>
+        </Link>
       </BorderGradientForButton>
     </div>
   );
