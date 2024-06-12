@@ -5,14 +5,27 @@ import { BorderGradientForButton } from "./BorderGradientForButton";
 import rocketGraphic from "../../../public/rocketGraphic.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 export const FormToQuestionnaire = () => {
   const router = useRouter();
   const [userName, setUserName] = useState("");
-  const handelSubmit = (e) => {
+  const [email, setEmail] = useState("");
+  const handelSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await axios.post("https://api.web3forms.com/submit", {
+        userName,
+        email,
+        apikey: "7663844f-cdc7-4df6-ae55-6872104f2c83",
+      });
 
-    const query = new URLSearchParams({ name: userName }).toString();
-    router.push(`/questionnaire?${query}`);
+      const query = new URLSearchParams({
+        name: userName,
+      }).toString();
+      router.push(`/questionnaire?${query}`);
+    } catch (error) {
+      console.log("error");
+    }
   };
   return (
     <section className="py-10 2xl:pt-24">
@@ -22,18 +35,32 @@ export const FormToQuestionnaire = () => {
             Start the questionnaire to unlock your benefits!
           </h1>
           <form onSubmit={handelSubmit}>
+            <input
+              type="hidden"
+              name="apikey"
+              value="7663844f-cdc7-4df6-ae55-6872104f2c83"
+            ></input>
+            <input
+              type="hidden"
+              name="subject"
+              value="New Submission from Web3Forms"
+            ></input>
             <InputWithLabel
+              name="name"
               label="First name"
               placeholder="First name"
               required={true}
               onChange={(e) => setUserName(e.target.value)}
             />
             <InputWithLabel
+              name="email"
               label="Email"
               placeholder="Email"
               type="email"
               required={true}
+              onChange={(e) => setEmail(e.target.value)}
             />
+
             <BorderGradientForButton className="max-w-max">
               <ButtonChevron type="submit">Next step</ButtonChevron>
             </BorderGradientForButton>
