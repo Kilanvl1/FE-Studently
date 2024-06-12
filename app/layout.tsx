@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description:
     "Studently is a platform that helps international students in the Netherlands to access government benefits.",
   openGraph: {
-    images: "https://student-ly.com",
+    images: "https://student-ly.com/Favicon.ico",
   },
 };
 
