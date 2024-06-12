@@ -7,6 +7,8 @@ import type { Viewport } from "next";
 import { PHProvider } from "./providers/providers";
 import dynamic from "next/dynamic";
 import { Footer } from "@/components/ui/Footer";
+import favicon from "../public/Favicon.ico";
+import { url } from "inspector";
 const PostHogPageView = dynamic(() => import("./PostHogPageView"), {
   ssr: false,
 });
@@ -16,6 +18,9 @@ export const metadata: Metadata = {
   title: "Studently",
   description:
     "Studently is a platform that helps international students in the Netherlands to access government benefits.",
+  openGraph: {
+    images: "https://student-ly.com",
+  },
 };
 
 export const viewport: Viewport = {
