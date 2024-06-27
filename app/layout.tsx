@@ -7,12 +7,11 @@ import type { Viewport } from "next";
 import { PHProvider } from "./providers/providers";
 import dynamic from "next/dynamic";
 import { Footer } from "@/components/ui/Footer";
-import favicon from "../public/Favicon.ico";
-import { url } from "inspector";
+
 const PostHogPageView = dynamic(() => import("./PostHogPageView"), {
   ssr: false,
 });
-const inter = Inter({ subsets: ["latin"] });
+
 const sans = DM_Sans({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Studently",
