@@ -19,11 +19,8 @@ export const FormToQuestionnaire = () => {
       email: email,
     };
     try {
-      await axios.post("https://api.web3forms.com/submit", {
-        userName,
-        email,
-        apikey: "7663844f-cdc7-4df6-ae55-6872104f2c83",
-      });
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+      await axios.post(`${API_BASE_URL}profiles/`, profileCreateBody);
 
       const query = new URLSearchParams({
         name: userName,
