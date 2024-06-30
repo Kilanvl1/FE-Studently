@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, DM_Sans } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "../utils/utils";
 import { Header } from "./_components/HeaderLandingPage";
@@ -7,7 +7,6 @@ import type { Viewport } from "next";
 import { PHProvider } from "./providers/providers";
 import dynamic from "next/dynamic";
 import { Footer } from "@/components/ui/Footer";
-
 const PostHogPageView = dynamic(() => import("./PostHogPageView"), {
   ssr: false,
 });
@@ -36,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="/Favicon.ico" sizes="any" />
+
       <PHProvider>
         <body
           className={cn(
