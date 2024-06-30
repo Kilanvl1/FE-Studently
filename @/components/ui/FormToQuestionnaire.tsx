@@ -6,12 +6,18 @@ import rocketGraphic from "../../../public/rocketGraphic.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { ProfileCreateRequest } from "../../..//types/schemas";
 export const FormToQuestionnaire = () => {
   const router = useRouter();
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const handelSubmit = async (e) => {
     e.preventDefault();
+    const profileCreateBody: ProfileCreateRequest = {
+      number_of_landingpage_visits: 0,
+      name: userName,
+      email: email,
+    };
     try {
       await axios.post("https://api.web3forms.com/submit", {
         userName,
