@@ -5,31 +5,44 @@ import { BorderGradientForButton } from "./BorderGradientForButton";
 import rocketGraphic from "../../../public/rocketGraphic.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+
 import { ProfileCreateRequest } from "../../..//types/schemas";
+import api from "../../../app/API/api";
 export const FormToQuestionnaire = () => {
   const router = useRouter();
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
+
   const handelSubmit = async (e) => {
     e.preventDefault();
+
     const profileCreateBody: ProfileCreateRequest = {
       number_of_landingpage_visits: 0,
       name: userName,
       email: email,
     };
-    try {
-      const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-      await axios.post(`${API_BASE_URL}profiles/`, profileCreateBody);
 
+    try {
+      // API request to sign-on
+      const response = await api.post("profiles/", profileCreateBody);
+      const { profile, token } = response.data;
+
+      // Store token in the local storage
+      localStorage.setItem("token", token);
+      localStorage.setItem("id", profile.id);
+
+      // Redirect to the questionnaire page with the user's name as a query parameter
       const query = new URLSearchParams({
         name: userName,
       }).toString();
+
       router.push(`/questionnaire?${query}`);
     } catch (error) {
+      // TO-DO handle error using some component abstraction
       console.log("error");
     }
   };
+
   return (
     <section className="py-10 2xl:pt-24">
       <div className="flex flex-col gap-y-5 2xl:flex-row 2xl:justify-center gap-x-20">
