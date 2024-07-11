@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { InputWithLabel } from "@/components/ui/InputWithLabel";
 import { ButtonChevron } from "@/components/ui/ButtonChevron";
@@ -44,7 +45,7 @@ export const FormToQuestionnaire = () => {
   };
 
   return (
-    <section className="py-10 2xl:pt-24">
+    <section className="py-10 2xl:pt-24" id="form-to-questionnaire">
       <div className="flex flex-col gap-y-5 2xl:flex-row 2xl:justify-center gap-x-20">
         <div className="max-w-96 flex flex-col gap-y-5">
           <h1 className="font-bold text-[28px] leading-8">

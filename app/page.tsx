@@ -1,5 +1,3 @@
-"use client";
-import { useRef } from "react";
 import { LandingPage } from "./_components/LandingPage";
 import { Container } from "./_components/Container";
 
@@ -8,12 +6,10 @@ import Image from "next/image";
 import { HighlightsSection } from "@/components/ui/HighlightsSection";
 import { FormToQuestionnaire } from "@/components/ui/FormToQuestionnaire";
 export default function Home() {
-  const formRef = useRef<HTMLFormElement | null>(null);
-
   return (
     <section>
       <Container>
-        <LandingPage formRef={formRef} />
+        <LandingPage />
         <section className="flex flex-col gap-y-4 py-14 items-center">
           <div className="flex gap-x-[2px] items-center">
             <Image src={star} alt="star" className="h-5 w-5" />
@@ -22,9 +18,8 @@ export default function Home() {
           <h1 className="text-lg">Trusted by +400 students in Amsterdam.</h1>
         </section>
         <HighlightsSection />
-        <section ref={formRef}>
-          <FormToQuestionnaire />
-        </section>
+
+        <FormToQuestionnaire />
       </Container>
     </section>
   );

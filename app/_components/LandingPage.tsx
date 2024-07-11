@@ -1,16 +1,12 @@
-import { ButtonChevron } from "@/components/ui/ButtonChevron";
 import Image from "next/image";
 
 import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
 
 import banner from "../../public/iStock-1502799630 1.svg";
 import { Logo } from "@/components/ui/Logo";
+import { LandingpageCTA } from "@/components/ui/LandingpageCTA";
 
-export const LandingPage = ({
-  formRef,
-}: {
-  formRef: React.RefObject<HTMLFormElement>;
-}) => {
+export const LandingPage = () => {
   return (
     <section className="2xl:h-[840px] pt-32 2xl:p-0">
       <div className="2xl:bg-hero bg-no-repeat bg-center flex flex-col gap-y-7 2xl:mt-10 2xl:h-[776px] items-center 2xl:items-start">
@@ -20,15 +16,7 @@ export const LandingPage = ({
             64% of international students miss out on government benefits.
           </h3>
           <BorderGradientForButton className="max-w-max">
-            <ButtonChevron
-              onClick={() => {
-                formRef.current?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
-            >
-              Unlock my benefits
-            </ButtonChevron>
+            <LandingpageCTA />
           </BorderGradientForButton>
         </div>
         <Image
