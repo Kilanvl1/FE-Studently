@@ -7,7 +7,12 @@ import bus from "../../../public/Bus.svg";
 import { BorderGradientForButton } from "./BorderGradientForButton";
 import { LeafNode } from "./LeafNode";
 
-export const ResultsOverview = () => {
+type ResultsOverviewProps = {
+  user: any;
+};
+
+export const ResultsOverview = ({ user }: ResultsOverviewProps) => {
+  console.log(user);
   const searchParams = useSearchParams();
   const usersName = searchParams.get("name");
   const livingAwayFromHome = searchParams.get("living-away-from-home");

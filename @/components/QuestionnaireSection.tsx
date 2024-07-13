@@ -27,8 +27,9 @@ export const QuestionnaireSection = () => {
   const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
+    const profileId = localStorage.getItem("id");
     const query = new URLSearchParams(user).toString();
-    router.push(`/results?${query}`);
+    router.push(`/${profileId}/results?${query}`);
   };
   const contextValue: UserContextType = { user, updateUser };
 

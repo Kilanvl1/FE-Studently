@@ -18,7 +18,6 @@ export const FormToQuestionnaire = () => {
     e.preventDefault();
 
     const profileCreateBody: ProfileCreateRequest = {
-      number_of_landingpage_visits: 0,
       name: userName,
       email: email,
     };
@@ -26,18 +25,18 @@ export const FormToQuestionnaire = () => {
     try {
       // API request to sign-on
       const response = await api.post("profiles/", profileCreateBody);
-      const { profile, token } = response.data;
 
-      // Store token in the local storage
-      localStorage.setItem("token", token);
-      localStorage.setItem("id", profile.id);
+      const { id } = response.data;
+
+      // Store token in local storage
+      localStorage.setItem("id", id);
 
       // Redirect to the questionnaire page with the user's name as a query parameter
       const query = new URLSearchParams({
         name: userName,
       }).toString();
 
-      router.push(`/questionnaire?${query}`);
+      router.push(`/${id}/questionnaire?${query}`);
     } catch (error) {
       // TO-DO handle error using some component abstraction
       console.log("error");

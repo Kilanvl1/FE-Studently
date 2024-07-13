@@ -18,7 +18,6 @@ export default function Home() {
           <h1 className="text-lg">Trusted by +400 students in Amsterdam.</h1>
         </section>
         <HighlightsSection />
-
         <FormToQuestionnaire />
       </Container>
     </section>

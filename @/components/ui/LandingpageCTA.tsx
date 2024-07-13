@@ -6,15 +6,14 @@ export const LandingpageCTA = () => {
   const router = useRouter();
 
   function handleOnCTAClick() {
-    const token = localStorage.getItem("token");
     const profileId = localStorage.getItem("id");
-    if (token && token === "studently") {
+    if (profileId) {
       try {
         api.put(`profile/${profileId}/increment-page-visits/`);
       } catch (error) {
         // TO-DO: Handle error correctly
       }
-      router.push(`/questionnaire`);
+      router.push(`/${profileId}/questionnaire`);
     } else {
       const targetElement = document.getElementById("form-to-questionnaire");
       if (targetElement) {
