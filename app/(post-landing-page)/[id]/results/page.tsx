@@ -1,14 +1,16 @@
 import { ResultsOverview } from "@/components/ui/ResultsOverview";
-import { Container } from "app/_components/Container";
-import { Suspense } from "react";
+import { Container } from "@/components/ui/Container";
+
 import { BookApointment } from "@/components/ui/BookApointment";
 import { Whatsapp } from "@/components/ui/Whatsapp";
-import api from "../../../API/api";
+import api from "../../../../API/api";
+import { getProfileRoute } from "@/API/routes";
 
 async function getProfile(id: string) {
   try {
-    const response = await api.get(`profiles/${id}/`);
-    return response.data;
+    const response = await api.get(getProfileRoute(id));
+
+    return response;
   } catch (error) {
     console.log("error");
   }
@@ -19,19 +21,18 @@ export default async function ResultsPage({
 }: {
   params: { id: string };
 }) {
-  const user = await getProfile(params.id);
+  const profile = await getProfile(params.id);
+  console.log("profile", profile);
   return (
     <section className="py-16">
       <Container>
-        <Suspense>
-          <div className="flex flex-col gap-y-12 2xl:flex-row 2xl:justify-between">
-            <ResultsOverview user={user} />
-            <div className="flex flex-col gap-y-10">
-              <BookApointment />
-              <Whatsapp />
-            </div>
+        <div className="flex flex-col gap-y-12 2xl:flex-row 2xl:justify-between">
+          <ResultsOverview profile={profile} />
+          <div className="flex flex-col gap-y-10">
+            <BookApointment />
+            <Whatsapp />
           </div>
-        </Suspense>
+        </div>
       </Container>
     </section>
   );

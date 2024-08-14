@@ -7,12 +7,12 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 
-import info from "../../../public/Info.svg";
+import info from "@/public/Info.svg";
 
 import Image from "next/image";
-import { RadioGroup, RadioGroupItem } from "./radio-group";
-import { Label } from "./label";
-import { BorderGradientForButton } from "./BorderGradientForButton";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
 export type User = {
   [key: string]: any;
 };
@@ -44,20 +44,26 @@ export const QuestionNode = ({
   followUpOnNo,
   provideQuestionInfo,
 }: QuestionNodeProps) => {
-  const [value, setValue] = useState("");
   const { user, updateUser } = useContext(UserContext);
+
+  const [value, setValue] = useState(
+    user[propertyKey] === true
+      ? "yes"
+      : user[propertyKey] === false
+      ? "no"
+      : null
+  );
   const nextQuestionRef = useRef<HTMLDivElement>(null);
+
   const handleSelectChange = (e: string) => {
     const newUserObject = {};
     let reachedTargetProperty = false;
 
     for (const key in user) {
-      if (Object.prototype.hasOwnProperty.call(user, key)) {
-        if (key === propertyKey) {
-          reachedTargetProperty = true;
-        } else if (!reachedTargetProperty) {
-          newUserObject[key] = user[key];
-        }
+      if (key === propertyKey) {
+        reachedTargetProperty = true;
+      } else if (!reachedTargetProperty) {
+        newUserObject[key] = user[key];
       }
     }
     const valueAsBool = e === "yes" ? true : false;
@@ -66,12 +72,10 @@ export const QuestionNode = ({
   };
 
   useEffect(() => {
-    if (nextQuestionRef.current) {
-      nextQuestionRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    nextQuestionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   }, [value]);
   return (
     <>
@@ -107,7 +111,7 @@ export const QuestionNode = ({
               roundedSize="lg"
               borderWidth="sm"
             >
-              <MyRadioGroupItem value="yes" label="Yes" />
+              <MyRadioGroupItem value="yes" label="Yes" checked />
             </BorderGradientForButton>
           ) : (
             <MyRadioGroupItem value="yes" label="Yes" />
@@ -118,7 +122,7 @@ export const QuestionNode = ({
               roundedSize="lg"
               borderWidth="sm"
             >
-              <MyRadioGroupItem value="no" label="No" />
+              <MyRadioGroupItem value="no" label="No" checked />
             </BorderGradientForButton>
           ) : (
             <MyRadioGroupItem value="no" label="No" />
@@ -136,14 +140,16 @@ export const QuestionNode = ({
 const MyRadioGroupItem = ({
   value,
   label,
+  checked,
 }: {
   value: "no" | "yes";
   label: "Yes" | "No";
+  checked?: boolean;
 }) => {
   return (
-    <div className="flex items-center space-x-4 rounded-lg py-4 px-2 border-[#DEDEDE] border bg-white">
-      <RadioGroupItem value={value} className="font-medium" />
-      <Label className="font-normal text-base">{label}</Label>
-    </div>
+    <Label className="flex items-center space-x-4 rounded-lg py-4 px-2 border-[#DEDEDE] border bg-white hover:cursor-pointer">
+      <RadioGroupItem value={value} className="font-medium" checked={checked} />
+      <p className="font-normal text-base">{label}</p>
+    </Label>
   );
 };

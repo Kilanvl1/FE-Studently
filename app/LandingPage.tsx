@@ -1,10 +1,8 @@
 import Image from "next/image";
 
 import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
-
-import banner from "../../public/iStock-1502799630 1.svg";
 import { Logo } from "@/components/ui/Logo";
-import { LandingpageCTA } from "@/components/ui/LandingpageCTA";
+import { LandingpageCTA } from "./LandingPageCTA";
 
 export const LandingPage = () => {
   return (
@@ -20,9 +18,11 @@ export const LandingPage = () => {
           </BorderGradientForButton>
         </div>
         <Image
-          src={banner}
+          src="/landingPageBanner.svg"
           alt="Banner"
           className="relative bottom-[78px] 2xl:hidden"
+          width={350}
+          height={459}
         />
       </div>
     </section>

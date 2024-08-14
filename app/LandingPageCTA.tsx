@@ -1,24 +1,19 @@
 "use client";
-import { ButtonChevron } from "./ButtonChevron";
+import { ButtonChevron } from "../@/components/ui/ButtonChevron";
 import { useRouter } from "next/navigation";
-import api from "../../../app/API/api";
+
 export const LandingpageCTA = () => {
   const router = useRouter();
 
-  function handleOnCTAClick() {
+  // Redirect to questionnaire if profile already exists otherwise scroll to form
+  async function handleOnCTAClick() {
     const profileId = localStorage.getItem("id");
+
     if (profileId) {
-      try {
-        api.put(`profile/${profileId}/increment-page-visits/`);
-      } catch (error) {
-        // TO-DO: Handle error correctly
-      }
       router.push(`/${profileId}/questionnaire`);
     } else {
       const targetElement = document.getElementById("form-to-questionnaire");
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
-      }
+      targetElement.scrollIntoView({ behavior: "smooth" });
     }
   }
 

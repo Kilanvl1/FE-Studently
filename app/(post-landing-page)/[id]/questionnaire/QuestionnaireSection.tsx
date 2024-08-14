@@ -1,65 +1,63 @@
 "use client";
-import { QuestionNode } from "@/components/ui/QuestionNode";
+import { QuestionNode } from "./QuestionNode";
 import { useContext, useState } from "react";
-import X from "../../public/XCircle.svg";
-import checkCircle from "../../public/CheckCircle.png";
-import check from "../../public/Check.svg";
-import {
-  UserContext,
-  User,
-  UserContextType,
-} from "@/components/ui/QuestionNode";
-import { InputWithLabel } from "./ui/InputWithLabel";
-import { LeafNode } from "./ui/LeafNode";
-import { BorderGradientForButton } from "./ui/BorderGradientForButton";
-import { ButtonChevron } from "./ui/ButtonChevron";
+import check from "@/public/Check.svg";
+import checkCircle from "@/public/CheckCircle.png";
+import X from "@/public/XCircle.svg";
+import { UserContext, UserContextType } from "./QuestionNode";
+import { InputWithLabel } from "@/components/ui/InputWithLabel";
+import { LeafNode } from "@/components/ui/LeafNode";
+import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
+import { ButtonChevron } from "@/components/ui/ButtonChevron";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
+import { updateProfileRoute } from "@/API/routes";
 
-export const QuestionnaireSection = () => {
-  const searchParams = useSearchParams();
-  const usersName = searchParams.get("name");
-  const [user, setUser] = useState<User>({ name: usersName, age: "" });
-  const updateUser = (newUser: User) => {
-    setUser(newUser);
-  };
+import api from "@/API/api";
+import { Profile } from "types/schemas";
+
+export const QuestionnaireSection = ({ profile }: { profile: Profile }) => {
+  const [user, setUser] = useState(profile);
   const router = useRouter();
-  const handleSubmit = (e) => {
+
+  // Update profile and navigate to results page
+  const handleQuestionnaireSubmit = (e) => {
     e.preventDefault();
     const profileId = localStorage.getItem("id");
-    const query = new URLSearchParams(user).toString();
-    router.push(`/${profileId}/results?${query}`);
-  };
-  const contextValue: UserContextType = { user, updateUser };
 
-  const ageAsNumber = parseInt(user.age);
+    api.patch(updateProfileRoute(profileId), user);
+    router.push(`/${profileId}/results`);
+  };
+
+  const contextValue: UserContextType = { user, updateUser: setUser };
+  const ageAsNumber = user.age ?? 0;
+
   return (
     <form
       className="flex flex-col gap-y-5 2xl:flex-1 min-h-[80vh] max-w-[668px]"
-      onSubmit={handleSubmit}
+      onSubmit={handleQuestionnaireSubmit}
     >
       <InputWithLabel
         placeholder="Type your age..."
         label="Your age"
         type="number"
         value={ageAsNumber || ""}
-        onChange={(e) => setUser((prev) => ({ ...prev, age: e.target.value }))}
+        onChange={(e) =>
+          setUser((prev) => ({ ...prev, age: parseInt(e.target.value) }))
+        }
       />
-      {ageAsNumber <= 32 && ageAsNumber && (
+      {ageAsNumber > 0 && ageAsNumber <= 32 ? (
         <UserContext.Provider value={contextValue}>
           <RootNode />
         </UserContext.Provider>
-      )}
-
-      {ageAsNumber > 32 && (
+      ) : ageAsNumber > 32 ? (
         <LeafNode
           bgColor="bg-[#F1DADA]"
           prompt="Oops..."
           info="In order to qualify for student benefits, you need to meet certain age requirements. Unfortunately, if you are above the age of 32, you are not eligible for student finance under the current regulations."
           icon={X}
         />
-      )}
+      ) : null}
     </form>
   );
 };
@@ -67,7 +65,7 @@ export const QuestionnaireSection = () => {
 const WorkNode = () => {
   return (
     <QuestionNode
-      propertyKey="work"
+      propertyKey="is_working"
       question="Do you have a job in the Netherlands?"
       followUpOnYes={<SeeResultsButton />}
       followUpOnNo={<SeeResultsButton />}
@@ -78,7 +76,7 @@ const WorkNode = () => {
 const InsuranceBenefitNode = () => {
   return (
     <QuestionNode
-      propertyKey="insurance-benefit"
+      propertyKey="has_insurance_benefit"
       question="Are you receiving a health insurance benefit?"
       followUpOnYes={<SeeResultsButton />}
       followUpOnNo={<SeeResultsButton />}
@@ -92,7 +90,7 @@ const InsuranceBenefitNode = () => {
 const InsuranceNode = () => {
   return (
     <QuestionNode
-      propertyKey="insurance"
+      propertyKey="is_insured"
       question="Do you have a Dutch health insurance?"
       followUpOnYes={<InsuranceBenefitNode />}
       followUpOnNo={<WorkNode />}
@@ -108,7 +106,7 @@ const RequirementsNode = () => {
 
   return (
     <QuestionNode
-      propertyKey="requirements"
+      propertyKey="is_eligible"
       question="Do you meet one of the two following requirements?"
       followUpOnYes={<InsuranceNode />}
       followUpOnNo={
@@ -149,7 +147,7 @@ const RequirementsNode = () => {
 const EUPassportNode = () => {
   return (
     <QuestionNode
-      propertyKey="eu-passport"
+      propertyKey="is_EU"
       question="Do you have an EU passport?"
       followUpOnYes={<RequirementsNode />}
       followUpOnNo={
@@ -169,12 +167,12 @@ const EUPassportNode = () => {
 const LivingAwayFromHomeNode = () => {
   return (
     <QuestionNode
-      propertyKey="living-away-from-home"
-      question="Do you live away from home?"
+      propertyKey="is_living_at_home"
+      question="Do you live with your parents?"
       followUpOnYes={<SeeResultsButton />}
       followUpOnNo={<SeeResultsButton />}
       provideQuestionInfo={[
-        "You are living away from home if you are registered with the municipality at a different address than your parent(s).",
+        "You are living away from your parents if you are registered with the municipality at a different address than your parent(s).",
       ]}
     />
   );
@@ -184,7 +182,7 @@ const DutchNationalityNode = () => {
   return (
     <QuestionNode
       key="0"
-      propertyKey="dutch-nationality"
+      propertyKey="is_dutch"
       question="Are you from the Netherlands?"
       followUpOnYes={<LivingAwayFromHomeNode />}
       followUpOnNo={<EUPassportNode />}
@@ -210,7 +208,7 @@ const RootNode = () => {
   return (
     <QuestionNode
       key="0"
-      propertyKey="full-time-student"
+      propertyKey="is_student"
       question="Are you a full time student?"
       followUpOnYes={<DutchNationalityNode />}
       followUpOnNo={

@@ -1,39 +1,32 @@
 "use client";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import checkmark from "../../../public/CheckedCircle.svg";
 import coin from "../../../public/Coin.svg";
 import bus from "../../../public/Bus.svg";
 import { BorderGradientForButton } from "./BorderGradientForButton";
 import { LeafNode } from "./LeafNode";
+import { Profile } from "@/types/schemas";
 
 type ResultsOverviewProps = {
-  user: any;
+  profile: Profile;
 };
 
-export const ResultsOverview = ({ user }: ResultsOverviewProps) => {
-  console.log(user);
-  const searchParams = useSearchParams();
-  const usersName = searchParams.get("name");
-  const livingAwayFromHome = searchParams.get("living-away-from-home");
-  const dutchNationality = searchParams.get("dutch-nationality");
-  const isWorking = searchParams.get("work");
-  const hasInsurance = searchParams.get("insurance");
-  const hasInsuranceBenefit = searchParams.get("insurance-benefit");
-  const riskOfInsuranceFine = isWorking === "true" && hasInsurance === "false";
-  let earnings = "";
-
-  if (dutchNationality === "true") {
-    earnings = livingAwayFromHome === "true" ? "3,628.68" : "1,455.96";
+export const ResultsOverview = ({ profile }: ResultsOverviewProps) => {
+  const isAtRiskOfInsuranceFine = profile.is_working && !profile.is_insured;
+  let earnings = "0";
+  if (profile.is_dutch) {
+    earnings = profile.is_living_at_home ? "1,455.96" : "3,628.68";
   } else {
-    earnings = hasInsuranceBenefit === "true" ? "3,628.68" : "5,104.68";
+    console.log("got here");
+    console.log(profile);
+    earnings = profile.has_insurance_benefit ? "3,628.68" : "5,104.68";
   }
   return (
     <div className="flex flex-col gap-y-5 pt-14">
       <div className="flex gap-x-2 items-center">
         <Image src={checkmark} alt="checkmar" />
         <h1 className="font-bold text-2xl 2xl:text-4xl">
-          Good news, {usersName}!
+          Good news, {profile.name}!
         </h1>
       </div>
       <div className="flex flex-col gap-y-3">
@@ -65,7 +58,7 @@ export const ResultsOverview = ({ user }: ResultsOverviewProps) => {
             </div>
           </div>
         </BorderGradientForButton>
-        {riskOfInsuranceFine && (
+        {isAtRiskOfInsuranceFine && (
           <LeafNode
             bgColor="bg-[#F1DADA]"
             icon={checkmark}

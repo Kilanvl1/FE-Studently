@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["@/components/*"],
-      "@/lib/*": ["@/lib/*"]
+      "@/API/*": ["API/*"],
+      "@/public/*": ["public/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

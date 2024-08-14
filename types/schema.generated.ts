@@ -61,6 +61,16 @@ export interface components {
             /** Format: email */
             email?: string;
             has_booked_appointment?: boolean;
+            /** Format: int64 */
+            age?: number | null;
+            is_student?: boolean | null;
+            is_dutch?: boolean | null;
+            is_EU?: boolean | null;
+            is_eligible?: boolean | null;
+            is_insured?: boolean | null;
+            has_insurance_benefit?: boolean | null;
+            is_working?: boolean | null;
+            is_living_at_home?: boolean | null;
         };
         Profile: {
             readonly id: number;
@@ -69,12 +79,32 @@ export interface components {
             email: string;
             has_booked_appointment?: boolean;
             readonly number_of_landingpage_visits: number;
+            /** Format: int64 */
+            age?: number | null;
+            is_student?: boolean | null;
+            is_dutch?: boolean | null;
+            is_EU?: boolean | null;
+            is_eligible?: boolean | null;
+            is_insured?: boolean | null;
+            has_insurance_benefit?: boolean | null;
+            is_working?: boolean | null;
+            is_living_at_home?: boolean | null;
         };
         ProfileRequest: {
             name: string;
             /** Format: email */
             email: string;
             has_booked_appointment?: boolean;
+            /** Format: int64 */
+            age?: number | null;
+            is_student?: boolean | null;
+            is_dutch?: boolean | null;
+            is_EU?: boolean | null;
+            is_eligible?: boolean | null;
+            is_insured?: boolean | null;
+            has_insurance_benefit?: boolean | null;
+            is_working?: boolean | null;
+            is_living_at_home?: boolean | null;
         };
     };
     responses: never;

@@ -1,9 +1,25 @@
-import { Container } from "app/_components/Container";
+import { Container } from "@/components/ui/Container";
 
-import { QuestionnaireSection } from "@/components/QuestionnaireSection";
-import { Suspense } from "react";
+import { QuestionnaireSection } from "./QuestionnaireSection";
 
-export default function QuestionnairePage() {
+import { getProfile } from "@/API/requests";
+
+/* async function getProfile(id: string): Promise<Profile> {
+  try {
+    const response = await api.get(getProfileRoute(id));
+    return response;
+  } catch (error) {
+    console.log("Could not fetch profile...", error);
+  }
+} */
+
+export default async function QuestionnairePage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const profile = await getProfile(params.id);
+  console.log(profile);
   return (
     <Container className="pt-32">
       <div className="2xl:flex gap-x-20 2xl:justify-between">
@@ -16,9 +32,8 @@ export default function QuestionnairePage() {
             we need the following information:
           </p>
         </div>
-        <Suspense>
-          <QuestionnaireSection />
-        </Suspense>
+
+        <QuestionnaireSection profile={profile} />
       </div>
     </Container>
   );
