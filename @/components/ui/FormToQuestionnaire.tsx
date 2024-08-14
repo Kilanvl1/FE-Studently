@@ -8,8 +8,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { ProfileCreateRequest } from "../../..//types/schemas";
-import { createProfileRoute } from "@/API/routes";
-import api from "@/API/api";
+
+import { createProfile } from "@/API/profile";
 export const FormToQuestionnaire = () => {
   const router = useRouter();
   const [userName, setUserName] = useState("");
@@ -22,24 +22,11 @@ export const FormToQuestionnaire = () => {
       name: userName,
       email: email,
     };
-
-    try {
-      // API request to sign-on
-      const responseData = await api.post(
-        createProfileRoute(),
-        profileCreateBody
-      );
-
-      const { id } = responseData;
-
-      // Store token in local storage
-      localStorage.setItem("id", id);
-
-      router.push(`/${id}/questionnaire`);
-    } catch (error) {
-      // TO-DO handle error using some component abstraction
-      console.log("error");
-    }
+    // TO-DO wrap in try catch
+    const response = await createProfile(profileCreateBody);
+    const { id } = response;
+    localStorage.setItem("id", id.toString());
+    router.push(`/${id}/questionnaire`);
   };
 
   return (

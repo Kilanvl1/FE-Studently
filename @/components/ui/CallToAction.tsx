@@ -1,5 +1,5 @@
 import Link from "next/link";
-import whatsapp from "../../../public/whatsapp.svg";
+
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 

@@ -2,21 +2,12 @@ import { Container } from "@/components/ui/Container";
 
 import { QuestionnaireSection } from "./QuestionnaireSection";
 
-import { getProfile } from "@/API/requests";
-
-/* async function getProfile(id: string): Promise<Profile> {
-  try {
-    const response = await api.get(getProfileRoute(id));
-    return response;
-  } catch (error) {
-    console.log("Could not fetch profile...", error);
-  }
-} */
+import { getProfile } from "@/API/profile";
 
 export default async function QuestionnairePage({
   params,
 }: {
-  params: { id: string };
+  params: { id: number };
 }) {
   const profile = await getProfile(params.id);
   console.log(profile);

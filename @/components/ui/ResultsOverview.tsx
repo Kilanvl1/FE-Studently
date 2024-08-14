@@ -5,7 +5,7 @@ import coin from "../../../public/Coin.svg";
 import bus from "../../../public/Bus.svg";
 import { BorderGradientForButton } from "./BorderGradientForButton";
 import { LeafNode } from "./LeafNode";
-import { Profile } from "@/types/schemas";
+import { Profile } from "types/schemas";
 
 type ResultsOverviewProps = {
   profile: Profile;
@@ -17,8 +17,6 @@ export const ResultsOverview = ({ profile }: ResultsOverviewProps) => {
   if (profile.is_dutch) {
     earnings = profile.is_living_at_home ? "1,455.96" : "3,628.68";
   } else {
-    console.log("got here");
-    console.log(profile);
     earnings = profile.has_insurance_benefit ? "3,628.68" : "5,104.68";
   }
   return (

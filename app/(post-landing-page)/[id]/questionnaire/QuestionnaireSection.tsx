@@ -11,9 +11,8 @@ import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton
 import { ButtonChevron } from "@/components/ui/ButtonChevron";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { updateProfileRoute } from "@/API/routes";
 
-import api from "@/API/api";
+import { updateProfile } from "@/API/profile";
 import { Profile } from "types/schemas";
 
 export const QuestionnaireSection = ({ profile }: { profile: Profile }) => {
@@ -25,7 +24,7 @@ export const QuestionnaireSection = ({ profile }: { profile: Profile }) => {
     e.preventDefault();
     const profileId = localStorage.getItem("id");
 
-    api.patch(updateProfileRoute(profileId), user);
+    const respnse = updateProfile(profileId, user);
     router.push(`/${profileId}/results`);
   };
 

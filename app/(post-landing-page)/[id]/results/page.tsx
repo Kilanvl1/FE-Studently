@@ -3,23 +3,13 @@ import { Container } from "@/components/ui/Container";
 
 import { BookApointment } from "@/components/ui/BookApointment";
 import { Whatsapp } from "@/components/ui/Whatsapp";
-import api from "../../../../API/api";
-import { getProfileRoute } from "@/API/routes";
 
-async function getProfile(id: string) {
-  try {
-    const response = await api.get(getProfileRoute(id));
-
-    return response;
-  } catch (error) {
-    console.log("error");
-  }
-}
+import { getProfile } from "@/API/profile";
 
 export default async function ResultsPage({
   params,
 }: {
-  params: { id: string };
+  params: { id: number };
 }) {
   const profile = await getProfile(params.id);
   console.log("profile", profile);
