@@ -10,7 +10,6 @@ export default async function QuestionnairePage({
   params: { id: number };
 }) {
   const profile = await getProfile(params.id);
-  console.log(profile);
   return (
     <Container className="pt-32">
       <div className="2xl:flex gap-x-20 2xl:justify-between">

@@ -1,8 +1,10 @@
 "use client";
+import { useState } from "react";
 import { ButtonChevron } from "../@/components/ui/ButtonChevron";
 import { useRouter } from "next/navigation";
 
 export const LandingpageCTA = () => {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   // Redirect to questionnaire if profile already exists otherwise scroll to form
@@ -10,6 +12,7 @@ export const LandingpageCTA = () => {
     const profileId = localStorage.getItem("id");
 
     if (profileId) {
+      setLoading(true);
       router.push(`/${profileId}/questionnaire`);
     } else {
       const targetElement = document.getElementById("form-to-questionnaire");
@@ -18,6 +21,8 @@ export const LandingpageCTA = () => {
   }
 
   return (
-    <ButtonChevron onClick={handleOnCTAClick}>Unlock my benefits</ButtonChevron>
+    <ButtonChevron onClick={handleOnCTAClick} isLoading={loading}>
+      Unlock my benefits
+    </ButtonChevron>
   );
 };

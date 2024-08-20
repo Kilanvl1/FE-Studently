@@ -10,12 +10,14 @@ import { useRouter } from "next/navigation";
 import { ProfileCreateRequest } from "../../..//types/schemas";
 
 import { createProfile } from "@/API/profile";
+
 export const FormToQuestionnaire = () => {
   const router = useRouter();
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const handelSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
 
     const profileCreateBody: ProfileCreateRequest = {
@@ -64,7 +66,9 @@ export const FormToQuestionnaire = () => {
             />
 
             <BorderGradientForButton className="max-w-max">
-              <ButtonChevron type="submit">Next step</ButtonChevron>
+              <ButtonChevron type="submit" isLoading={loading}>
+                Next step
+              </ButtonChevron>
             </BorderGradientForButton>
           </form>
         </div>

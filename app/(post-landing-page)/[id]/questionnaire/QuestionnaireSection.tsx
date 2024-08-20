@@ -20,12 +20,11 @@ export const QuestionnaireSection = ({ profile }: { profile: Profile }) => {
   const router = useRouter();
 
   // Update profile and navigate to results page
-  const handleQuestionnaireSubmit = (e) => {
+  const handleQuestionnaireSubmit = async (e) => {
     e.preventDefault();
     const profileId = localStorage.getItem("id");
 
-    const respnse = updateProfile(profileId, user);
-    router.push(`/${profileId}/results`);
+    await updateProfile(profileId, user);
   };
 
   const contextValue: UserContextType = { user, updateUser: setUser };
@@ -117,7 +116,7 @@ const RequirementsNode = () => {
             prompt="Oops..."
           />
           <LeafNode
-            info="Don’t meet the above requirements? Don’t worry! Select “Yes” and we will help you navigate other potential options or guide you on how to become eligible at a later stage. We are here to support you every step of the way."
+            info="Don't meet the above requirements? Don't worry! Select Yes and we will help you navigate other potential options or guide you on how to become eligible at a later stage. We are here to support you every step of the way."
             icon={checkCircle}
             bgColor="bg-[#D3D4F6]"
             prompt="But wait..."
@@ -194,16 +193,26 @@ const DutchNationalityNode = () => {
 };
 
 const SeeResultsButton = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const handleClick = () => {
+    setIsLoading(true);
+    router.push(`/${localStorage.getItem("id")}/results`);
+  };
+
   return (
     <BorderGradientForButton className="max-w-max">
-      <ButtonChevron>See results</ButtonChevron>
+      <ButtonChevron onClick={handleClick} isLoading={isLoading} type="submit">
+        See results
+      </ButtonChevron>
     </BorderGradientForButton>
   );
 };
 
 const RootNode = () => {
   const followUpOnNo =
-    "You don’t qualify for the student benefits, as it's specifically designed to support students pursuing full-time studies at Dutch educational institutions.";
+    "You don't qualify for the student benefits, as it's specifically designed to support students pursuing full-time studies at Dutch educational institutions.";
   return (
     <QuestionNode
       key="0"
