@@ -18,7 +18,7 @@ export async function getProfile(id: number): Promise<Profile> {
 
 // UPDATE
 export async function updateProfile(
-  id: string,
+  id: number,
   userData: Partial<Profile>
 ): Promise<Profile> {
   return apiClient<Profile, Partial<Profile>>(

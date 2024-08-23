@@ -17,14 +17,12 @@ import { Profile } from "types/schemas";
 
 export const QuestionnaireSection = ({ profile }: { profile: Profile }) => {
   const [user, setUser] = useState(profile);
-  const router = useRouter();
 
   // Update profile and navigate to results page
   const handleQuestionnaireSubmit = async (e) => {
     e.preventDefault();
-    const profileId = localStorage.getItem("id");
 
-    await updateProfile(profileId, user);
+    await updateProfile(profile.id, user);
   };
 
   const contextValue: UserContextType = { user, updateUser: setUser };
