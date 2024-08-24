@@ -74,57 +74,55 @@ export const QuestionNode = ({
     });
   }, [value]);
   return (
-    <>
-      <div className="flex flex-col gap-y-2 gap-x-4 mb-4 justify-between transition duration-300">
-        <div className="flex items-center gap-x-2">
-          <Label htmlFor={propertyKey} className="text-base font-normal">
-            {question}
-          </Label>
-          {provideQuestionInfo && (
-            <Popover>
-              <PopoverTrigger>
-                <Image src={info} alt="info" />
-              </PopoverTrigger>
-              <PopoverContent>
-                <ul className="list-disc px-4">
-                  {provideQuestionInfo.map((info, index) => (
-                    <li key={index} className="mb-2">
-                      {info}
-                    </li>
-                  ))}
-                </ul>
-              </PopoverContent>
-            </Popover>
-          )}
-        </div>
-        {children}
-        <RadioGroup onValueChange={handleSelectChange}>
-          {value === "yes" ? (
-            <BorderGradientForButton
-              fillColor="white"
-              roundedSize="lg"
-              borderWidth="sm"
-            >
-              <MyRadioGroupItem value="yes" label="Yes" checked />
-            </BorderGradientForButton>
-          ) : (
-            <MyRadioGroupItem value="yes" label="Yes" />
-          )}
-
-          {value === "no" ? (
-            <BorderGradientForButton
-              fillColor="white"
-              roundedSize="lg"
-              borderWidth="sm"
-            >
-              <MyRadioGroupItem value="no" label="No" checked />
-            </BorderGradientForButton>
-          ) : (
-            <MyRadioGroupItem value="no" label="No" />
-          )}
-        </RadioGroup>
+    <div>
+      <div className="flex items-center gap-x-2 mb-2">
+        <Label htmlFor={propertyKey} className="text-base font-normal">
+          {question}
+        </Label>
+        {provideQuestionInfo && (
+          <Popover>
+            <PopoverTrigger>
+              <Image src={info} alt="info" />
+            </PopoverTrigger>
+            <PopoverContent>
+              <ul className="list-disc px-4">
+                {provideQuestionInfo.map((info, index) => (
+                  <li key={index} className="mb-2">
+                    {info}
+                  </li>
+                ))}
+              </ul>
+            </PopoverContent>
+          </Popover>
+        )}
       </div>
-    </>
+      {children}
+      <RadioGroup onValueChange={handleSelectChange}>
+        {value === "yes" ? (
+          <BorderGradientForButton
+            fillColor="white"
+            roundedSize="lg"
+            borderWidth="sm"
+          >
+            <MyRadioGroupItem value="yes" label="Yes" checked />
+          </BorderGradientForButton>
+        ) : (
+          <MyRadioGroupItem value="yes" label="Yes" />
+        )}
+
+        {value === "no" ? (
+          <BorderGradientForButton
+            fillColor="white"
+            roundedSize="lg"
+            borderWidth="sm"
+          >
+            <MyRadioGroupItem value="no" label="No" checked />
+          </BorderGradientForButton>
+        ) : (
+          <MyRadioGroupItem value="no" label="No" />
+        )}
+      </RadioGroup>
+    </div>
   );
 };
 

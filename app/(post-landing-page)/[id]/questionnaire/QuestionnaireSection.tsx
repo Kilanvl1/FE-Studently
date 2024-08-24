@@ -27,7 +27,7 @@ export const QuestionnaireSection = ({ profile }: { profile: Profile }) => {
 
   return (
     <form
-      className="flex flex-col gap-y-5 2xl:flex-1 min-h-[80vh] max-w-[32rem]"
+      className="flex flex-col gap-y-8 2xl:flex-1 min-h-[80vh] max-w-[32rem]"
       onSubmit={handleQuestionnaireSubmit}
     >
       <InputWithLabel

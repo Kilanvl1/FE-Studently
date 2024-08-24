@@ -58,7 +58,7 @@ export const ResultsOverview = ({ profile }: ResultsOverviewProps) => {
         </BorderGradientForButton>
         {isAtRiskOfInsuranceFine && (
           <LeafNode
-            bgColor="bg-[#F1DADA]"
+            bgColor="red"
             icon={checkmark}
             prompt="Caution!"
             info="You are at risk of paying a 500€ insurance fine!"
