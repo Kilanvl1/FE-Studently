@@ -24,8 +24,6 @@ export const CalendlyComponent = ({ id }: CalendlyComponentProps) => {
       script.src = "https://assets.calendly.com/assets/external/widget.js";
 
       script.onload = () => {
-        console.log(document.getElementById("calendly-inline-widget"));
-
         // Add event listener for successful bookings
         window.Calendly.initInlineWidget({
           url: "https://calendly.com/studently-nl/consultation-meeting",

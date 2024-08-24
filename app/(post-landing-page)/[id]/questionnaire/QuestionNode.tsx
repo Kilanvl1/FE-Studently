@@ -13,6 +13,7 @@ import Image from "next/image";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
+import { Profile } from "types/schemas";
 export type User = {
   [key: string]: any;
 };
@@ -28,11 +29,9 @@ export const UserContext = createContext<UserContextType>({
 });
 
 type QuestionNodeProps = {
-  propertyKey: string;
+  propertyKey: keyof Profile;
   question: string;
   children?: React.ReactNode;
-  followUpOnYes?: React.ReactNode;
-  followUpOnNo?: React.ReactNode;
   provideQuestionInfo?: string[];
 };
 
@@ -40,8 +39,6 @@ export const QuestionNode = ({
   propertyKey,
   question,
   children,
-  followUpOnYes,
-  followUpOnNo,
   provideQuestionInfo,
 }: QuestionNodeProps) => {
   const { user, updateUser } = useContext(UserContext);
@@ -79,19 +76,17 @@ export const QuestionNode = ({
   }, [value]);
   return (
     <>
-      <div
-        className={cn(
-          `flex flex-col gap-y-2 gap-x-4 mb-4 max-w-[32rem] justify-between transition duration-300`
-        )}
-      >
+      <div className="flex flex-col gap-y-2 gap-x-4 mb-4 justify-between transition duration-300">
         <div className="flex items-center gap-x-2">
-          <label htmlFor={propertyKey}>{question}</label>
+          <Label htmlFor={propertyKey} className="text-base font-normal">
+            {question}
+          </Label>
           {provideQuestionInfo && (
             <Popover>
               <PopoverTrigger>
                 <Image src={info} alt="info" />
               </PopoverTrigger>
-              <PopoverContent className="bg-black text-white">
+              <PopoverContent>
                 <ul className="list-disc px-4">
                   {provideQuestionInfo.map((info, index) => (
                     <li key={index} className="mb-2">
@@ -116,6 +111,7 @@ export const QuestionNode = ({
           ) : (
             <MyRadioGroupItem value="yes" label="Yes" />
           )}
+
           {value === "no" ? (
             <BorderGradientForButton
               fillColor="white"
@@ -128,10 +124,6 @@ export const QuestionNode = ({
             <MyRadioGroupItem value="no" label="No" />
           )}
         </RadioGroup>
-      </div>
-      <div ref={nextQuestionRef}>
-        {value === "yes" && followUpOnYes}
-        {value === "no" && followUpOnNo}
       </div>
     </>
   );
