@@ -12,14 +12,25 @@ import { Profile } from "types/schemas";
 
 import { ConditionalQuestion } from "./ConditionalQuestion";
 import { questionNodes } from "./QuestionNodes";
+import { useRouter } from "next/navigation";
+
 export const QuestionnaireSection = ({ profile }: { profile: Profile }) => {
   const [user, setUser] = useState(profile);
+  const router = useRouter();
 
   // Update profile and navigate to results page
   const handleQuestionnaireSubmit = async (e) => {
     e.preventDefault();
+    // Create a new object with all properties set to null
+    const nullifiedProfile = Object.fromEntries(
+      Object.keys(profile).map((key) => [key, null])
+    );
 
-    await updateProfile(profile.id, user);
+    // Merge the nullified profile with the current user state
+    const updatedProfile = { ...nullifiedProfile, ...user };
+
+    await updateProfile(profile.id, updatedProfile);
+    router.refresh();
   };
 
   const contextValue: UserContextType = { user, updateUser: setUser };
