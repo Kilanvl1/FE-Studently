@@ -16,8 +16,10 @@ export default function Home() {
           </div>
           <h1 className="text-lg">Trusted by +400 students in Amsterdam.</h1>
         </section>
-        <HighlightsSection />
-        <FormToQuestionnaire />
+        <div className="max-w-[800px] mx-auto">
+          <HighlightsSection />
+          <FormToQuestionnaire />
+        </div>
       </Container>
     </section>
   );

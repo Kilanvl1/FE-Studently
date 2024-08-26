@@ -16,29 +16,35 @@ export const FormToQuestionnaire = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const handelSubmit = async (e) => {
-    setLoading(true);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
-    const profileCreateBody: ProfileCreateRequest = {
-      name: userName,
-      email: email,
-    };
-    // TO-DO wrap in try catch
-    const response = await createProfile(profileCreateBody);
-    const { id } = response;
-    localStorage.setItem("id", id.toString());
-    router.push(`/${id}/questionnaire`);
+    try {
+      const profileCreateBody: ProfileCreateRequest = {
+        name: userName,
+        email: email,
+      };
+
+      const response = await createProfile(profileCreateBody);
+      const { id } = response;
+      localStorage.setItem("id", id.toString());
+      router.push(`/${id}/questionnaire`);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <section className="py-10 2xl:pt-24" id="form-to-questionnaire">
-      <div className="flex flex-col gap-y-5 2xl:flex-row 2xl:justify-center gap-x-20">
+      <div className="flex flex-col items-center 2xl:flex-row 2xl:justify-center gap-x-20">
         <div className="max-w-96 flex flex-col gap-y-5">
           <h1 className="font-bold text-[28px] leading-8">
             Start the questionnaire to unlock your benefits!
           </h1>
-          <form onSubmit={handelSubmit}>
+          <form onSubmit={handleSubmit}>
             <input
               type="hidden"
               name="apikey"

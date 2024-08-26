@@ -1,4 +1,4 @@
-import { ResultsOverview } from "@/components/ui/ResultsOverview";
+import { ResultsOverview } from "./ResultsOverview";
 import { Container } from "@/components/ui/Container";
 
 import { BookApointment } from "@/components/ui/BookApointment";

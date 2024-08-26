@@ -3,7 +3,8 @@ import { Container } from "@/components/ui/Container";
 import { QuestionnaireSection } from "./QuestionnaireSection";
 
 import { getProfile } from "@/API/profile";
-
+import { BackButton } from "@/components/ui/BackButton";
+import { ArrowLeft } from "lucide-react";
 export default async function QuestionnairePage({
   params,
 }: {
@@ -13,6 +14,9 @@ export default async function QuestionnairePage({
 
   return (
     <Container className="pt-32">
+      <BackButton href="/" className="max-w-12">
+        <ArrowLeft color="white" />
+      </BackButton>
       <div className="2xl:flex gap-x-20 2xl:justify-between">
         <div className="max-w-96 mb-5">
           <h1 className="font-bold text-3xl mb-5 2xl:text-4xl">

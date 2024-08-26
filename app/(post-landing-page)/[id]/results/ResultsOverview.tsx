@@ -1,12 +1,12 @@
-"use client";
 import Image from "next/image";
-import checkmark from "../../../public/CheckedCircle.svg";
-import coin from "../../../public/Coin.svg";
-import bus from "../../../public/Bus.svg";
-import { BorderGradientForButton } from "./BorderGradientForButton";
-import { LeafNode } from "./LeafNode";
+import checkmark from "@/public/CheckedCircle.svg";
+import coin from "@/public/Coin.svg";
+import bus from "@/public/Bus.svg";
+import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
+import { LeafNode } from "@/components/ui/LeafNode";
 import { Profile } from "types/schemas";
-
+import { BackButton } from "@/components/ui/BackButton";
+import { ArrowLeft } from "lucide-react";
 type ResultsOverviewProps = {
   profile: Profile;
 };
@@ -21,6 +21,9 @@ export const ResultsOverview = ({ profile }: ResultsOverviewProps) => {
   }
   return (
     <div className="flex flex-col gap-y-5 pt-14">
+      <BackButton href={`/${profile.id}/questionnaire`} className="max-w-12">
+        <ArrowLeft color="white" />
+      </BackButton>
       <div className="flex gap-x-2 items-center">
         <Image src={checkmark} alt="checkmar" />
         <h1 className="font-bold text-2xl 2xl:text-4xl">
