@@ -20,7 +20,7 @@ const config = {
     },
     extend: {
       backgroundImage: {
-        hero: "url('../public/bannerDesktop.svg')",
+        hero: "url('../public/desktop-banner.png')",
       },
       screens: {
         "2xl": "1440px",

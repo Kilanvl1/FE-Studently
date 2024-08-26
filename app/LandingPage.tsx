@@ -18,7 +18,7 @@ export const LandingPage = () => {
           </BorderGradientForButton>
         </div>
         <Image
-          src="/landingPageBanner.svg"
+          src="/mobile-banner.png"
           alt="Banner"
           className="relative bottom-[78px] 2xl:hidden"
           width={350}
