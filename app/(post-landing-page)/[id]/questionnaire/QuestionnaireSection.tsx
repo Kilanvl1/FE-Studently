@@ -13,10 +13,6 @@ import { Profile } from "types/schemas";
 import { ConditionalQuestion } from "./ConditionalQuestion";
 import { questionNodes } from "./QuestionNodes";
 import { useRouter } from "next/navigation";
-import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 export const QuestionnaireSection = ({ profile }: { profile: Profile }) => {
   const [user, setUser] = useState(profile);

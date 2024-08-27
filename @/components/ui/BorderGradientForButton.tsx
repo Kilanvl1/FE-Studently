@@ -37,7 +37,6 @@ const borderGradientForButtonStyles = cva("", {
 type BorderGradientForButtonProps = {
   children: ReactNode;
   className?: string;
-  hidden?: boolean;
 } & VariantProps<typeof borderGradientForButtonStyles>;
 
 export const BorderGradientForButton = ({
@@ -48,7 +47,6 @@ export const BorderGradientForButton = ({
   gradientDirection = "toR",
   gradientColors = "purple",
   className,
-  hidden = false,
 }: BorderGradientForButtonProps) => {
   return (
     <div className={`relative ${className}`}>
@@ -60,8 +58,7 @@ export const BorderGradientForButton = ({
             borderWidth,
             gradientDirection,
             gradientColors,
-          }),
-          hidden && "hidden"
+          })
         )}
         aria-hidden="true"
       ></div>
