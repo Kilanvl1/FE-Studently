@@ -10,26 +10,32 @@ import { useRouter } from "next/navigation";
 import { ProfileCreateRequest } from "../../..//types/schemas";
 
 import { createProfile } from "@/API/profile";
-
+import { usePostHog } from "posthog-js/react";
 export const FormToQuestionnaire = () => {
+  const posthog = usePostHog();
   const router = useRouter();
-  const [userName, setUserName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
     try {
       const profileCreateBody: ProfileCreateRequest = {
-        name: userName,
-        email: email,
+        name,
+        email,
+        session_replay_url: posthog.get_session_replay_url(),
       };
 
       const response = await createProfile(profileCreateBody);
       const { id } = response;
       localStorage.setItem("id", id.toString());
+
       router.push(`/${id}/questionnaire`);
+      posthog.capture("profile_created");
+      posthog.identify(email);
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
@@ -60,7 +66,7 @@ export const FormToQuestionnaire = () => {
               label="First name"
               placeholder="First name"
               required={true}
-              onChange={(e) => setUserName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
             <InputWithLabel
               name="email"

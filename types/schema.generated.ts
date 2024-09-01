@@ -60,6 +60,8 @@ export interface components {
             name?: string;
             /** Format: email */
             email?: string;
+            /** Format: uri */
+            session_replay_url?: string | null;
             has_booked_appointment?: boolean;
             /** Format: int64 */
             age?: number | null;
@@ -75,8 +77,8 @@ export interface components {
         Profile: {
             readonly id: number;
             name: string;
-            /** Format: email */
-            email: string;
+            /** Format: uri */
+            session_replay_url?: string | null;
             has_booked_appointment?: boolean;
             readonly number_of_landingpage_visits: number;
             /** Format: int64 */
@@ -94,6 +96,8 @@ export interface components {
             name: string;
             /** Format: email */
             email: string;
+            /** Format: uri */
+            session_replay_url?: string | null;
             has_booked_appointment?: boolean;
             /** Format: int64 */
             age?: number | null;
