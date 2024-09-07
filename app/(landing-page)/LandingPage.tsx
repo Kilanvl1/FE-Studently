@@ -49,6 +49,7 @@ const DesktopLandingPage = () => {
       />
       <div className="relative top-8 left-8">
         <Logo className="mb-24" />
+
         <h3 className="font-bold text-3xl mb-7">
           64% of international students miss out on government benefits.
         </h3>
