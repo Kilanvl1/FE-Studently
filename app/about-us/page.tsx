@@ -2,6 +2,7 @@ import { Avatar } from "app/_components/ui/avatar";
 import { Container } from "app/_components/ui/Container";
 import { AvatarImage, AvatarFallback } from "app/_components/ui/avatar";
 import { GraduationCap, SquareCheck } from "lucide-react";
+import { Property } from "./Property";
 export default function AboutUsPage() {
   return (
     <Container className="pt-32 flex flex-col gap-y-4">
@@ -36,17 +37,3 @@ export default function AboutUsPage() {
     </Container>
   );
 }
-
-type PropertyProps = {
-  icon: React.ReactNode;
-  description: string;
-};
-
-export const Property = ({ icon, description }: PropertyProps) => {
-  return (
-    <div className="flex items-center gap-x-3 mb-2">
-      {icon}
-      <p>{description}</p>
-    </div>
-  );
-};
