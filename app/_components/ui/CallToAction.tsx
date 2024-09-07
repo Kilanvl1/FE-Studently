@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn } from "app/utils";
 
 type CallToActionProps = {
   src?: any;
