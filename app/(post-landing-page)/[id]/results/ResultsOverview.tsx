@@ -1,7 +1,7 @@
 import Image from "next/image";
-import checkmark from "@/public/CheckedCircle.svg";
-import coin from "@/public/Coin.svg";
-import bus from "@/public/Bus.svg";
+import checkmark from "public/CheckedCircle.svg";
+import coin from "public/Coin.svg";
+import bus from "public/Bus.svg";
 import { BorderGradientForButton } from "app/_components/ui/BorderGradientForButton";
 import { LeafNode } from "app/_components/ui/LeafNode";
 import { Profile } from "app/_types/schemas";

@@ -1,8 +1,8 @@
 import { cn } from "app/utils";
 import Image from "next/image";
 
-import X from "@/public/XCircle.svg";
-import Check from "@/public/CheckedCircle.svg";
+import X from "public/XCircle.svg";
+import Check from "public/CheckedCircle.svg";
 
 type LeafNodePorps = {
   bgColor: "red" | "purple";
