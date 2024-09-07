@@ -1,7 +1,6 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Input, InputProps } from "./input";
+import { Label } from "./label";
 
-import { InputProps } from "@/components/ui/input";
 type InputWithLabelProps = InputProps & {
   label: string;
 };

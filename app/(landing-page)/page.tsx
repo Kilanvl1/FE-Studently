@@ -1,9 +1,9 @@
 import { LandingPage } from "./LandingPage";
-import { Container } from "../@/components/ui/Container";
+import { Container } from "app/_components/ui/Container";
 
 import Image from "next/image";
-import { HighlightsSection } from "@/components/ui/HighlightsSection";
-import { FormToQuestionnaire } from "@/components/ui/FormToQuestionnaire";
+import { HighlightsSection } from "./HighlightsSection";
+import { FormToQuestionnaire } from "./FormToQuestionnaire";
 export default function Home() {
   return (
     <section>

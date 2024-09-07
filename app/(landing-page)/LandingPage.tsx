@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
-import { Logo } from "@/components/ui/Logo";
+import { BorderGradientForButton } from "app/_components/ui/BorderGradientForButton";
+import { Logo } from "app/_components/ui/Logo";
 import { LandingpageCTA } from "./LandingPageCTA";
 
 export const LandingPage = () => {

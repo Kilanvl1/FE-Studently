@@ -4,15 +4,15 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "app/_components/ui/popover";
 
-import info from "@/public/Info.svg";
+import info from "public/Info.svg";
 
 import Image from "next/image";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
-import { Profile } from "types/schemas";
+import { RadioGroup, RadioGroupItem } from "app/_components/ui/radio-group";
+import { Label } from "app/_components/ui/label";
+import { BorderGradientForButton } from "app/_components/ui/BorderGradientForButton";
+import { Profile } from "app/_types/schemas";
 export type User = {
   [key: string]: any;
 };

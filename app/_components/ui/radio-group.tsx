@@ -4,7 +4,7 @@ import * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { Circle } from "lucide-react";
 import selectCircle from "../../../public/Ellipse 12.svg";
-import { cn } from "@/lib/utils";
+import { cn } from "app/utils";
 import Image from "next/image";
 
 const RadioGroup = React.forwardRef<

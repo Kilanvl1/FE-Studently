@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ButtonChevron } from "../@/components/ui/ButtonChevron";
+import { ButtonChevron } from "app/_components/ui/ButtonChevron";
 import { useRouter } from "next/navigation";
 
 export const LandingpageCTA = () => {

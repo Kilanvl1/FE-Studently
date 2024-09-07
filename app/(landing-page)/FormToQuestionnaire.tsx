@@ -1,15 +1,15 @@
 "use client";
 import { useState } from "react";
-import { InputWithLabel } from "@/components/ui/InputWithLabel";
-import { ButtonChevron } from "@/components/ui/ButtonChevron";
-import { BorderGradientForButton } from "./BorderGradientForButton";
-import rocketGraphic from "../../../public/rocketGraphic.svg";
+import { InputWithLabel } from "app/_components/ui/InputWithLabel";
+import { ButtonChevron } from "app/_components/ui/ButtonChevron";
+import { BorderGradientForButton } from "app/_components/ui/BorderGradientForButton";
+import rocketGraphic from "public/rocketGraphic.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import { ProfileCreateRequest } from "../../..//types/schemas";
+import { ProfileCreateRequest } from "../_types/schemas";
 
-import { createProfile } from "@/API/profile";
+import { createProfile } from "app/_api/profile";
 import { usePostHog } from "posthog-js/react";
 export const FormToQuestionnaire = () => {
   const posthog = usePostHog();

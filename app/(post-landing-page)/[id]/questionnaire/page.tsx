@@ -1,9 +1,9 @@
-import { Container } from "@/components/ui/Container";
+import { Container } from "app/_components/ui/Container";
 
 import { QuestionnaireSection } from "./QuestionnaireSection";
 
-import { getProfile } from "@/API/profile";
-import { BackButton } from "@/components/ui/BackButton";
+import { getProfile } from "app/_api/profile";
+import { BackButton } from "app/_components/ui/BackButton";
 
 export default async function QuestionnairePage({
   params,

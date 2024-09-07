@@ -1,10 +1,10 @@
 import { ResultsOverview } from "./ResultsOverview";
-import { Container } from "@/components/ui/Container";
+import { Container } from "app/_components/ui/Container";
 
-import { BookApointment } from "@/components/ui/BookApointment";
-import { Whatsapp } from "@/components/ui/Whatsapp";
+import { BookApointment } from "app/_components/ui/BookApointment";
+import { Whatsapp } from "app/_components/ui/Whatsapp";
 
-import { getProfile } from "@/API/profile";
+import { getProfile } from "app/_api/profile";
 
 export default async function ResultsPage({
   params,

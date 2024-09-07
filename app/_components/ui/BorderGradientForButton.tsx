@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "app/utils";
 import { cva, VariantProps } from "class-variance-authority";
 
 const borderGradientForButtonStyles = cva("", {

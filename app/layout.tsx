@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
-import { cn } from "../utils/utils";
+import { cn } from "./utils";
 import { Header } from "./_components/HeaderLandingPage";
 import type { Viewport } from "next";
 import { PHProvider } from "./providers/providers";
 import dynamic from "next/dynamic";
-import { Footer } from "@/components/ui/Footer";
+import { Footer } from "app/_components/ui/Footer";
 const PostHogPageView = dynamic(() => import("./PostHogPageView"), {
   ssr: false,
 });

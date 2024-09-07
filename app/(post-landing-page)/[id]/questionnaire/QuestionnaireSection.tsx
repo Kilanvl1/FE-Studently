@@ -3,12 +3,12 @@
 import { useState } from "react";
 
 import { UserContext, UserContextType } from "./QuestionNode";
-import { InputWithLabel } from "@/components/ui/InputWithLabel";
-import { LeafNode } from "@/components/ui/LeafNode";
+import { InputWithLabel } from "app/_components/ui/InputWithLabel";
+import { LeafNode } from "app/_components/ui/LeafNode";
 import { SeeResultsButton } from "./SeeResultsButton";
 
-import { updateProfile } from "@/API/profile";
-import { Profile } from "types/schemas";
+import { updateProfile } from "app/_api/profile";
+import { Profile } from "app/_types/schemas";
 
 import { ConditionalQuestion } from "./ConditionalQuestion";
 import { questionNodes } from "./QuestionNodes";

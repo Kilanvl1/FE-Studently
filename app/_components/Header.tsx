@@ -1,4 +1,4 @@
-import { Logo } from "@/components/ui/Logo";
+import { Logo } from "app/_components/ui/Logo";
 export const Header = () => {
   return (
     <header className="py-4 px-5 fixed w-full z-20 min-h-16 bg-backgroundGradient-start">

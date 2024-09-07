@@ -1,7 +1,7 @@
-import chat from "../../../public/ChatCircleText.svg";
-import piggy from "../../../public/PiggyBank.svg";
-import binoculars from "../../../public/Binoculars.svg";
-import rocket from "../../../public/Rocket.svg";
+import chat from "public/ChatCircleText.svg";
+import piggy from "public/PiggyBank.svg";
+import binoculars from "public/Binoculars.svg";
+import rocket from "public/Rocket.svg";
 import { Highlight } from "./Highlight";
 
 export const HighlightsSection = () => {

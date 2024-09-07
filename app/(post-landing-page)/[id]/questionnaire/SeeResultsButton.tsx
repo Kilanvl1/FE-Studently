@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { BorderGradientForButton } from "@/components/ui/BorderGradientForButton";
-import { ButtonChevron } from "@/components/ui/ButtonChevron";
+import { BorderGradientForButton } from "app/_components/ui/BorderGradientForButton";
+import { ButtonChevron } from "app/_components/ui/ButtonChevron";
 import { useRouter } from "next/navigation";
 export const SeeResultsButton = () => {
   const [isLoading, setIsLoading] = useState(false);

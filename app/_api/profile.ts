@@ -1,4 +1,4 @@
-import { ProfileCreateRequest, Profile } from "types/schemas";
+import { ProfileCreateRequest, Profile } from "app/_types/schemas";
 import apiClient from "./api";
 // CREATE
 export async function createProfile(

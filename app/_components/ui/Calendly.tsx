@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 
-import { updateProfile } from "@/API/profile";
+import { updateProfile } from "app/_api/profile";
 
 declare global {
   interface Window {
