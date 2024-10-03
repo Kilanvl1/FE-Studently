@@ -1,7 +1,7 @@
 import { QuestionNode } from "./QuestionNode";
 
 import { LeafNode } from "app/_components/ui/LeafNode";
-import check from "@/public/Check.svg";
+import check from "public/Check.svg";
 
 import Image from "next/image";
 export const questionNodes = {

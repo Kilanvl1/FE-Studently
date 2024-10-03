@@ -44,7 +44,9 @@ export default function RootLayout({
           )}
         >
           <PostHogPageView />
-          <Header />
+          <div className="2xl:hidden">
+            <Header />
+          </div>
           {children}
           <Footer />
         </body>

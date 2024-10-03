@@ -3,13 +3,21 @@ import piggy from "public/PiggyBank.svg";
 import binoculars from "public/Binoculars.svg";
 import rocket from "public/Rocket.svg";
 import { Highlight } from "./Highlight";
+import { BorderGradientForButton } from "app/_components/ui/BorderGradientForButton";
+import Link from "next/link";
+import { buttonVariants } from "app/_components/ui/button";
 
 export const HighlightsSection = () => {
   return (
-    <section className="py-8 2xl:flex flex-col gap-y-16 2xl:py-24 items-center max-w-[800px] mx-auto">
+    <section className="py-8 flex flex-col gap-y-8 2xl:py-24 2xl:items-center max-w-[800px] mx-auto">
       <h1 className="font-bold text-3xl max-w-80">
         We do the hard work, you enjoy the money
       </h1>
+      <BorderGradientForButton className="max-w-max">
+        <Link href="about-us" className={buttonVariants()}>
+          Meet the founders
+        </Link>
+      </BorderGradientForButton>
       <div className="grid grid-cols-2 grid-rows-2 gap-3 mt-6">
         <Highlight
           image={rocket}

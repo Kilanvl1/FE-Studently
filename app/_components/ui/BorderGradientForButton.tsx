@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { cn } from "app/utils";
 import { cva, VariantProps } from "class-variance-authority";
 
-const borderGradientForButtonStyles = cva("", {
+export const borderGradientForButtonStyles = cva("", {
   variants: {
     fillColor: {
       black: "bg-black",
