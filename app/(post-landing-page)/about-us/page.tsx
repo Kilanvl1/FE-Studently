@@ -1,8 +1,7 @@
 import { Avatar } from "app/_components/ui/avatar";
 import { Container } from "app/_components/ui/Container";
 import { AvatarImage, AvatarFallback } from "app/_components/ui/avatar";
-import { GraduationCap, SquareCheck } from "lucide-react";
-import { Property } from "./Property";
+import { GraduationCap, SquareCheck, Globe } from "lucide-react";
 export default function AboutUsPage() {
   return (
     <Container className="pt-32 flex flex-col gap-y-4">
@@ -33,7 +32,46 @@ export default function AboutUsPage() {
           icon={<SquareCheck className="w-6 h-6" />}
           description="Entitled to €328 / month"
         />
+        <Property
+          icon={<Globe className="w-6 h-6" />}
+          description="French / Dutch"
+        />
+      </div>
+      <div className="rounded-xl bg-gradient-to-b from-[#FFFFFF] to-[#E7F5F6] py-5 px-3 max-w-96">
+        <div className="flex items-center gap-x-3 mb-3">
+          <Avatar>
+            <AvatarImage src="/Alex-avatar.jpeg" alt="Alex" />
+            <AvatarFallback>Alex</AvatarFallback>
+          </Avatar>
+          <h3 className="font-bold text-xl">Alex Garcia</h3>
+        </div>
+        <Property
+          icon={<GraduationCap className="w-6 h-6" />}
+          description="International Business, Vrije Universiteit"
+        />
+        <Property
+          icon={<SquareCheck className="w-6 h-6" />}
+          description="Entitled to €328 / month"
+        />
+        <Property
+          icon={<Globe className="w-6 h-6" />}
+          description="Spanish / Catalan"
+        />
       </div>
     </Container>
   );
 }
+
+type PropertyProps = {
+  icon: React.ReactNode;
+  description: string;
+};
+
+export const Property = ({ icon, description }: PropertyProps) => {
+  return (
+    <div className="flex items-center gap-x-3 mb-2">
+      {icon}
+      <p>{description}</p>
+    </div>
+  );
+};

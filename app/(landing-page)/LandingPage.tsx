@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 import { BorderGradientForButton } from "app/_components/ui/BorderGradientForButton";
 import { Logo } from "app/_components/ui/Logo";
 import { LandingpageCTA } from "./LandingPageCTA";
@@ -10,7 +9,7 @@ export const LandingPage = () => {
       <div className="block 2xl:hidden max-w-80 mx-auto pt-32">
         <MobileLandingPage />
       </div>
-      <div className="hidden 2xl:block h-[776px] mt-10 max-w-96">
+      <div className="hidden 2xl:block h-[776px] pt-10 max-w-96 mb-6">
         <DesktopLandingPage />
       </div>
     </section>
@@ -41,7 +40,7 @@ const DesktopLandingPage = () => {
   return (
     <>
       <Image
-        src="/desktop-banner.png"
+        src="/desktop-banner.webp"
         alt="desktop-banner"
         width={1359}
         height={776}
