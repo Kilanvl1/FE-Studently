@@ -19,7 +19,7 @@ export default function AboutUsPage() {
       <h3 className="font-bold text-3xl">Meet the owners</h3>
       <div className="2xl:flex gap-x-4">
         <FounderDisplay
-          avatarImage="/IMG_0135_2.jpg"
+          avatarImage="kilanAvatar.jpg"
           founderName="Kilan"
           properties={[
             {
@@ -41,7 +41,7 @@ export default function AboutUsPage() {
           ]}
         />
         <FounderDisplay
-          avatarImage="/Alex-avatar.jpeg"
+          avatarImage="/alexAvatar.webp"
           founderName="Alex"
           properties={[
             {

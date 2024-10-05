@@ -3,7 +3,7 @@ import { useState } from "react";
 import { InputWithLabel } from "app/_components/ui/InputWithLabel";
 import { ButtonChevron } from "app/_components/ui/ButtonChevron";
 import { BorderGradientForButton } from "app/_components/ui/BorderGradientForButton";
-import rocketGraphic from "public/rocketGraphic.svg";
+import rocketGraphic from "public/rocketGraphic.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 

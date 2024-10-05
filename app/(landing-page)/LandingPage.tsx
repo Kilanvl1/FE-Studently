@@ -26,7 +26,7 @@ const MobileLandingPage = () => {
         <LandingpageCTA />
       </BorderGradientForButton>
       <Image
-        src="/mobile-banner.png"
+        src="/mobile-banner.webp"
         alt="Banner"
         className="relative bottom-[50px]"
         width={350}
