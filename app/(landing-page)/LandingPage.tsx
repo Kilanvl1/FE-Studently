@@ -20,7 +20,7 @@ const MobileLandingPage = () => {
   return (
     <>
       <h3 className="font-bold text-3xl mb-7">
-        64% of international students miss out on government benefits.
+        Most international students miss out on government benefits.
       </h3>
       <BorderGradientForButton className="max-w-max">
         <LandingpageCTA />
@@ -50,7 +50,7 @@ const DesktopLandingPage = () => {
         <Logo className="mb-24" />
 
         <h3 className="font-bold text-3xl mb-7">
-          64% of international students miss out on government benefits.
+          Most international students miss out on government benefits.
         </h3>
         <BorderGradientForButton className="max-w-max">
           <LandingpageCTA />

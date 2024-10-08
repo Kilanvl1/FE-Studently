@@ -12,10 +12,11 @@ export function InputWithLabel({
   id,
   placeholder,
   value,
+  className,
   ...props
 }: InputWithLabelProps) {
   return (
-    <div className="grid w-full items-center gap-1.5 my-5">
+    <div className={`grid w-full items-center gap-1.5 my-5 ${className}`}>
       <Label htmlFor={id} className="font-normal text-base">
         {label}
       </Label>

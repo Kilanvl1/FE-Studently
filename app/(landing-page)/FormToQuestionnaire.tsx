@@ -15,8 +15,9 @@ export const FormToQuestionnaire = () => {
   const posthog = usePostHog();
   const router = useRouter();
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ export const FormToQuestionnaire = () => {
     try {
       const profileCreateBody: ProfileCreateRequest = {
         name,
-        email,
+        phone_number: phoneNumber,
         session_replay_url: posthog.get_session_replay_url(),
       };
 
@@ -35,9 +36,11 @@ export const FormToQuestionnaire = () => {
 
       router.push(`/${id}/questionnaire`);
       posthog.capture("profile_created");
-      posthog.identify(email);
+      posthog.identify(name);
     } catch (error) {
-      console.error("Error submitting form:", error);
+      setServerError(
+        "Phone number should be in the format: +country code phone number"
+      );
     } finally {
       setLoading(false);
     }
@@ -46,10 +49,11 @@ export const FormToQuestionnaire = () => {
   return (
     <section className="py-10 2xl:pt-24" id="form-to-questionnaire">
       <div className="flex flex-col items-center 2xl:flex-row 2xl:justify-center gap-x-20">
-        <div className="max-w-96 flex flex-col gap-y-5">
+        <div className="max-w-[600px] flex flex-col gap-y-5">
           <h1 className="font-bold text-[28px] leading-8">
             Start the questionnaire to unlock your benefits!
           </h1>
+          {serverError && <p className="text-red-500">{serverError}</p>}
           <form onSubmit={handleSubmit}>
             <input
               type="hidden"
@@ -68,15 +72,20 @@ export const FormToQuestionnaire = () => {
               required={true}
               onChange={(e) => setName(e.target.value)}
             />
-            <InputWithLabel
-              name="email"
-              label="Email"
-              placeholder="Email"
-              type="email"
-              required={true}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-
+            <div className="mb-6">
+              <InputWithLabel
+                name="phone_number"
+                label="Phone number"
+                placeholder="+31 632567843"
+                type="tel"
+                required={true}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                className="mb-2"
+              />
+              <p className="text-sm text-gray-500">
+                Phone format: +[country code] &nbsp; [number]
+              </p>
+            </div>
             <BorderGradientForButton className="max-w-max">
               <ButtonChevron type="submit" isLoading={loading}>
                 Next step

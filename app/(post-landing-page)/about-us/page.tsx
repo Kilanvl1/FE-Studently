@@ -58,7 +58,7 @@ export default function AboutUsPage() {
             },
             {
               icon: <Globe className="w-6 h-6" />,
-              description: "Spanish / Catalan",
+              description: "Spanish",
             },
           ]}
         />

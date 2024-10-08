@@ -20,6 +20,12 @@ export const HighlightsSection = () => {
       </BorderGradientForButton>
       <div className="grid grid-cols-2 grid-rows-2 gap-3 mt-6">
         <Highlight
+          image={piggy}
+          alt="piggy"
+          title="Success first, payment later!"
+          subTitle="We charge a 10% fee only on benefits you receive, so you have nothing to lose."
+        />
+        <Highlight
           image={rocket}
           alt="rocket"
           title="Eligibility assessment"
@@ -30,12 +36,6 @@ export const HighlightsSection = () => {
           alt="chat"
           title="Handle entire application process"
           subTitle="We handle the entire application process, so you can focus on your studies."
-        />
-        <Highlight
-          image={piggy}
-          alt="piggy"
-          title="Renewal and reminders"
-          subTitle="We handle the renewal process and send reminders, so you don't miss out on any benefits."
         />
         <Highlight
           image={binoculars}

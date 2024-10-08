@@ -10,11 +10,9 @@ export default function Home() {
       <Container>
         <LandingPage />
         <section className="flex flex-col gap-y-4 py-14 items-center">
-          <div className="flex gap-x-[2px] items-center">
-            <Image src="/Star.svg" alt="star" height={20} width={20} />
-            <h1 className="font-medium text-xl">4.7</h1>
-          </div>
-          <h1 className="text-lg">Trusted by +400 students in Amsterdam.</h1>
+          <h1 className="text-lg">
+            Trusted by +400 students in the Netherlands.
+          </h1>
         </section>
         <div className="max-w-[800px] mx-auto">
           <HighlightsSection />

@@ -59,10 +59,13 @@ export interface components {
         PatchedProfileRequest: {
             name?: string;
             /** Format: email */
-            email?: string;
+            email?: string | null;
+            phone_number?: string | null;
             /** Format: uri */
             session_replay_url?: string | null;
             has_booked_appointment?: boolean;
+            /** Format: int64 */
+            number_of_landingpage_visits?: number;
             /** Format: int64 */
             age?: number | null;
             is_student?: boolean | null;
@@ -77,10 +80,14 @@ export interface components {
         Profile: {
             readonly id: number;
             name: string;
+            /** Format: email */
+            email?: string | null;
+            phone_number?: string | null;
             /** Format: uri */
             session_replay_url?: string | null;
             has_booked_appointment?: boolean;
-            readonly number_of_landingpage_visits: number;
+            /** Format: int64 */
+            number_of_landingpage_visits?: number;
             /** Format: int64 */
             age?: number | null;
             is_student?: boolean | null;
@@ -95,10 +102,13 @@ export interface components {
         ProfileRequest: {
             name: string;
             /** Format: email */
-            email: string;
+            email?: string | null;
+            phone_number?: string | null;
             /** Format: uri */
             session_replay_url?: string | null;
             has_booked_appointment?: boolean;
+            /** Format: int64 */
+            number_of_landingpage_visits?: number;
             /** Format: int64 */
             age?: number | null;
             is_student?: boolean | null;
