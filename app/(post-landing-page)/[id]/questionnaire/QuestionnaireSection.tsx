@@ -77,7 +77,7 @@ export const QuestionnaireSection = ({ profile }: { profile: Profile }) => {
           <ConditionalQuestion
             condition={user.is_eligible}
             trueComponent={questionNodes.insuranceNode()}
-            falseComponent={questionNodes.notEligibleNode()}
+            falseComponent={questionNodes.insuranceNode()}
           />
           <ConditionalQuestion
             condition={user.is_insured}

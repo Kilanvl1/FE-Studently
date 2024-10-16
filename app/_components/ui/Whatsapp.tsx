@@ -6,13 +6,15 @@ import Link from "next/link";
 export const Whatsapp = () => {
   return (
     <div className="flex flex-col gap-y-5">
-      <h1 className="font-bold text-2xl">Got questions or concerns?</h1>
+      <h1 className="font-bold text-2xl">
+        Prefer to communicate via Whatsapp?
+      </h1>
       <BorderGradientForButton
         className="max-w-max"
         fillColor="transparent"
         gradientColors="green"
       >
-        <Link href="https://wa.me/31648115430">
+        <Link href="https://wa.me/31648115430" target="_blank">
           <Button className="flex gap-x-4 bg-white rounded-2xl">
             <Image src={whatsapp} alt="whatsapp" />
             <p className="text-black">Whatsapp</p>

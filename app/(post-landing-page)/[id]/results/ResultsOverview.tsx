@@ -6,21 +6,15 @@ import { BorderGradientForButton } from "app/_components/ui/BorderGradientForBut
 import { LeafNode } from "app/_components/ui/LeafNode";
 import { Profile } from "app/_types/schemas";
 import { BackButton } from "app/_components/ui/BackButton";
+import { NotEligible } from "./NotEligible";
 
 type ResultsOverviewProps = {
   profile: Profile;
 };
 
 export const ResultsOverview = ({ profile }: ResultsOverviewProps) => {
-  const isAtRiskOfInsuranceFine = profile.is_working && !profile.is_insured;
-  let earnings = "0";
-  if (profile.is_dutch) {
-    earnings = profile.is_living_at_home ? "1,455.96" : "3,628.68";
-  } else {
-    earnings = profile.has_insurance_benefit ? "3,628.68" : "5,104.68";
-  }
   return (
-    <div className="flex flex-col gap-y-5 pt-14">
+    <div className="flex flex-col gap-y-5 pt-14 max-w-[550px]">
       <BackButton href={`/${profile.id}/questionnaire`} className="max-w-12" />
       <div className="flex gap-x-2 items-center">
         <Image src={checkmark} alt="checkmar" />
@@ -41,7 +35,9 @@ export const ResultsOverview = ({ profile }: ResultsOverviewProps) => {
             <div className="flex items-start gap-x-4">
               <Image src={coin} alt="coin" className="pt-[6px]" />
               <div className="flex flex-col gap-y-2">
-                <h1 className="font-bold text-xl">{earnings}/Year</h1>
+                <h1 className="font-bold text-xl">
+                  {profile.benefit_amount}/Year
+                </h1>
                 <p className="text-sm">
                   Benefits are paid out monthly to your bank account by DUO.
                 </p>
@@ -57,7 +53,7 @@ export const ResultsOverview = ({ profile }: ResultsOverviewProps) => {
             </div>
           </div>
         </BorderGradientForButton>
-        {isAtRiskOfInsuranceFine && (
+        {profile.is_at_risk_of_insurance_fine && (
           <LeafNode
             bgColor="red"
             icon={checkmark}
@@ -65,6 +61,7 @@ export const ResultsOverview = ({ profile }: ResultsOverviewProps) => {
             info="You are at risk of paying a 500€ insurance fine!"
           />
         )}
+        {!profile.is_eligible && <NotEligible />}
       </div>
     </div>
   );
